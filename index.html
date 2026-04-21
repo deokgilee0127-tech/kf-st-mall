@@ -1,0 +1,2328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="mall-title-tag">KF_St | 키친플래그 스탠다드</title>
+<meta name="description" content="키친플래그 PB 상품 전용 폐쇄몰. 폐쇄몰 전용 특가.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   KF_St — WHITE + PASTEL DESIGN SYSTEM
+   ============================================================ */
+:root {
+  /* Brand Colors */
+  --primary:       #2A7FA5;   /* pastel blue deep */
+  --primary-light: #4AABCF;   /* pastel blue mid */
+  --primary-pale:  #EBF6FC;   /* pastel blue wash */
+  --mint:          #3CBFB0;   /* soft mint */
+  --mint-pale:     #E6F7F5;   /* mint wash */
+  --rose:          #E8708A;   /* soft rose / CTA */
+  --rose-hover:    #CD5E77;
+  --rose-pale:     #FDF0F3;
+  --gold:          #F5A623;
+  --gold-pale:     #FFF8EC;
+
+  /* Neutrals */
+  --white:         #FFFFFF;
+  --bg:            #F5F8FB;
+  --card:          #FFFFFF;
+  --border:        #DDE8F2;
+  --border-light:  #EEF4FA;
+  --text-1:        #1A2636;
+  --text-2:        #546A82;
+  --text-3:        #94ABBE;
+  --shadow-sm:     0 1px 4px rgba(42,127,165,.06);
+  --shadow-md:     0 4px 16px rgba(42,127,165,.10);
+  --shadow-lg:     0 8px 32px rgba(42,127,165,.14);
+  --shadow-xl:     0 20px 56px rgba(42,127,165,.18);
+  --radius-sm:     8px;
+  --radius-md:     14px;
+  --radius-lg:     22px;
+  --tr:            .24s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text-1);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 500;
+  box-shadow: var(--shadow-sm);
+}
+
+.notice-bar {
+  background: var(--primary);
+  background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+  text-align: center;
+  padding: 7px 16px;
+  font-size: 12px;
+  color: rgba(255,255,255,.92);
+  font-weight: 500;
+  letter-spacing: .3px;
+}
+
+.header-main {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 20px;
+}
+
+.logo { text-decoration: none; display: flex; flex-direction: column; line-height: 1; }
+.logo-mark {
+  font-family: 'Outfit', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: -1px;
+}
+.logo-sub {
+  font-size: 8.5px;
+  color: var(--text-3);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.header-nav a {
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 8px;
+  transition: all var(--tr);
+}
+
+.header-nav a:hover {
+  background: var(--primary-pale);
+  color: var(--primary);
+}
+
+.btn-cta {
+  background: var(--rose);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--tr);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 3px 12px rgba(232,112,138,.3);
+  white-space: nowrap;
+}
+.btn-cta:hover {
+  background: var(--rose-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(232,112,138,.4);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  background: linear-gradient(135deg, #EBF6FC 0%, #E6F7F5 50%, #FDEDF1 100%);
+  padding: 72px 24px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-light);
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(74,171,207,.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 90%, rgba(60,191,176,.10) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(32px, 6vw, 58px);
+  font-weight: 900;
+  color: var(--text-1);
+  line-height: 1.15;
+  margin-bottom: 18px;
+  letter-spacing: -1.5px;
+}
+.hero h1 em { color: var(--primary); font-style: normal; }
+.hero h1 span { color: var(--mint); }
+
+.hero-desc {
+  font-size: 15.5px;
+  color: var(--text-2);
+  max-width: 500px;
+  margin: 0 auto 36px;
+  line-height: 1.75;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  padding: 14px 34px;
+  border-radius: 100px;
+  font-size: 14.5px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--tr);
+  box-shadow: 0 4px 18px rgba(42,127,165,.28);
+}
+.btn-primary:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(42,127,165,.36);
+}
+.btn-outline-primary {
+  background: var(--white);
+  color: var(--primary);
+  padding: 13px 32px;
+  border-radius: 100px;
+  font-size: 14.5px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: all var(--tr);
+}
+.btn-outline-primary:hover {
+  border-color: var(--primary);
+  background: var(--primary-pale);
+  transform: translateY(-2px);
+}
+
+.hero-chips {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-chip {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hero-chip .chip-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+/* ============================================================
+   SECTION COMMON
+   ============================================================ */
+.section { padding: 64px 24px; }
+.container { max-width: 1240px; margin: 0 auto; }
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  background: var(--primary-pale);
+  color: var(--primary);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.section-eyebrow.mint { background: var(--mint-pale); color: var(--mint); }
+.section-eyebrow.rose { background: var(--rose-pale); color: var(--rose); }
+.section-eyebrow.gold { background: var(--gold-pale); color: var(--gold); }
+
+.section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 800;
+  color: var(--text-1);
+  line-height: 1.2;
+}
+
+.section-sub {
+  font-size: 13.5px;
+  color: var(--text-3);
+  margin-top: 5px;
+}
+
+/* ============================================================
+   [이달의 공격수]
+   ============================================================ */
+.attacker-section {
+  background: linear-gradient(135deg, var(--primary) 0%, #1A6A8F 40%, var(--mint) 100%);
+  padding: 64px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.attacker-section::before {
+  content: '';
+  position: absolute; right: -80px; top: -80px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+  pointer-events: none;
+}
+.attacker-section::after {
+  content: '';
+  position: absolute; left: -60px; bottom: -60px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.04);
+  pointer-events: none;
+}
+
+.attacker-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.attacker-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 18px;
+}
+
+.attacker-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.attacker-body {
+  font-size: 14.5px;
+  color: rgba(255,255,255,.8);
+  line-height: 1.85;
+  margin-bottom: 24px;
+}
+.attacker-body strong { color: #fff; }
+
+.attacker-kpi {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.attacker-kpi-item {
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 12px;
+  padding: 12px 20px;
+  text-align: center;
+}
+.attacker-kpi-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  display: block;
+}
+.attacker-kpi-label { font-size: 10px; color: rgba(255,255,255,.65); letter-spacing: 1px; }
+
+.attacker-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-white {
+  background: #fff;
+  color: var(--primary);
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all var(--tr);
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+.btn-ghost-white {
+  background: transparent;
+  color: #fff;
+  padding: 13px 26px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid rgba(255,255,255,.5);
+  cursor: pointer;
+  transition: all var(--tr);
+}
+.btn-ghost-white:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+
+.attacker-img-box {
+  position: relative;
+}
+.attacker-img {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  box-shadow: 0 24px 64px rgba(0,0,0,.25);
+  cursor: pointer;
+  transition: transform var(--tr);
+}
+.attacker-img:hover { transform: scale(1.02); }
+
+.attacker-badge {
+  position: absolute;
+  top: -16px; right: -16px;
+  background: var(--rose);
+  color: #fff;
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.4;
+  box-shadow: 0 6px 20px rgba(232,112,138,.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); box-shadow: 0 6px 20px rgba(232,112,138,.5); }
+  50% { transform: scale(1.07); box-shadow: 0 10px 28px rgba(232,112,138,.65); }
+}
+
+/* ============================================================
+   PRODUCT GRID
+   ============================================================ */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.product-card {
+  background: var(--card);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--tr);
+  box-shadow: var(--shadow-sm);
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border);
+}
+
+.card-img {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--primary-pale);
+}
+.card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+.product-card:hover .card-img img { transform: scale(1.06); }
+
+.card-badge {
+  position: absolute;
+  top: 10px; left: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 100px;
+  z-index: 2;
+}
+.badge-best { background: var(--gold); color: var(--text-1); }
+.badge-new  { background: var(--mint); color: #fff; }
+.badge-custom { background: var(--primary); color: #fff; }
+
+.card-body { padding: 16px 18px 18px; }
+.card-cat { font-size: 11px; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.card-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-1);
+  line-height: 1.45;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-price {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text-1);
+}
+.card-price small { font-size: 12px; font-weight: 500; color: var(--text-3); }
+.card-order-btn {
+  width: 36px; height: 36px;
+  background: var(--primary-pale);
+  color: var(--primary);
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--tr);
+  flex-shrink: 0;
+}
+.card-order-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  transform: rotate(12deg) scale(1.08);
+}
+
+/* ============================================================
+   MD SLIDER
+   ============================================================ */
+.slider-outer { position: relative; }
+.slider-wrap { overflow: hidden; }
+.slider-track {
+  display: flex;
+  gap: 20px;
+  transition: transform .38s cubic-bezier(.4,0,.2,1);
+}
+.slider-track .product-card { min-width: 264px; flex-shrink: 0; }
+
+.slider-nav {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  transition: all var(--tr);
+  z-index: 10;
+}
+.slider-nav:hover { background: var(--primary); color: #fff; border-color: var(--primary); transform: translateY(-50%) scale(1.08); }
+.slider-nav.prev { left: -10px; }
+.slider-nav.next { right: -10px; }
+
+/* ============================================================
+   BUNDLE
+   ============================================================ */
+.bundle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 22px;
+}
+
+.bundle-card {
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  cursor: pointer;
+  transition: all var(--tr);
+  position: relative;
+  overflow: hidden;
+}
+.bundle-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+
+.bundle-card.blue {
+  background: linear-gradient(140deg, var(--primary-pale) 0%, #D4EBF7 100%);
+  border: 1.5px solid #C0DFF2;
+}
+.bundle-card.mint {
+  background: linear-gradient(140deg, var(--mint-pale) 0%, #C8EDEA 100%);
+  border: 1.5px solid #B2DDD9;
+}
+.bundle-card.rose {
+  background: linear-gradient(140deg, var(--rose-pale) 0%, #F8D7DF 100%);
+  border: 1.5px solid #F0BEEF;
+}
+
+.bundle-eyebrow {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.bundle-card.blue .bundle-eyebrow { color: var(--primary); }
+.bundle-card.mint .bundle-eyebrow { color: var(--mint); }
+.bundle-card.rose .bundle-eyebrow { color: var(--rose); }
+
+.bundle-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 14px;
+  line-height: 1.35;
+}
+
+.bundle-items {
+  list-style: none;
+  margin-bottom: 20px;
+}
+.bundle-items li {
+  font-size: 13px;
+  color: var(--text-2);
+  padding: 4px 0;
+  padding-left: 18px;
+  position: relative;
+}
+.bundle-items li::before {
+  content: '✓';
+  position: absolute; left: 0;
+  font-weight: 800;
+}
+.bundle-card.blue .bundle-items li::before { color: var(--primary); }
+.bundle-card.mint .bundle-items li::before { color: var(--mint); }
+.bundle-card.rose .bundle-items li::before { color: var(--rose); }
+
+.bundle-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bundle-price {
+  font-family: 'Outfit', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--text-1);
+}
+
+.bundle-btn {
+  padding: 9px 18px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all var(--tr);
+  color: #fff;
+}
+.bundle-card.blue .bundle-btn { background: var(--primary); }
+.bundle-card.mint .bundle-btn { background: var(--mint); }
+.bundle-card.rose .bundle-btn { background: var(--rose); }
+.bundle-btn:hover { transform: scale(1.04); opacity: .92; }
+
+/* ============================================================
+   INFO BAR
+   ============================================================ */
+.info-bar {
+  background: var(--white);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  padding: 40px 24px;
+}
+.info-grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+.info-item {
+  text-align: center;
+  padding: 22px 20px;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  transition: all var(--tr);
+}
+.info-item:hover {
+  border-color: var(--border);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.info-icon { font-size: 26px; margin-bottom: 10px; }
+.info-title { font-size: 13px; font-weight: 700; color: var(--text-1); margin-bottom: 5px; }
+.info-desc { font-size: 12px; color: var(--text-3); line-height: 1.65; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--text-1);
+  color: rgba(255,255,255,.6);
+  padding: 44px 24px 28px;
+  font-size: 13px;
+}
+.footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 8px; }
+.footer-brand p { font-size: 12px; max-width: 260px; line-height: 1.75; }
+.footer-info p { margin-bottom: 4px; }
+.footer-info strong { color: rgba(255,255,255,.9); }
+.footer-bottom {
+  max-width: 1240px;
+  margin: 24px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-size: 11px;
+  text-align: center;
+  color: rgba(255,255,255,.25);
+}
+
+/* ============================================================
+   PRODUCT DETAIL MODAL
+   ============================================================ */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(26,38,54,.55);
+  backdrop-filter: blur(6px);
+  z-index: 800;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+}
+.overlay.active { display: flex; }
+
+.detail-modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: rise .3s ease;
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px) scale(.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+.modal-header {
+  background: var(--primary);
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-header h2 { color: #fff; font-size: 15px; font-weight: 700; }
+.modal-close-btn {
+  background: rgba(255,255,255,.15);
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--tr);
+}
+.modal-close-btn:hover { background: var(--rose); }
+
+.modal-main { display: grid; grid-template-columns: 1fr 1fr; min-height: 380px; }
+
+.modal-gallery {
+  padding: 22px;
+  background: var(--bg);
+  border-right: 1px solid var(--border-light);
+}
+.gallery-main-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: transform var(--tr);
+}
+.gallery-main-img:hover { transform: scale(1.02); }
+.gallery-thumbs { display: flex; gap: 7px; flex-wrap: wrap; }
+.gallery-thumbs img {
+  width: 50px; height: 50px;
+  border-radius: 6px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color var(--tr);
+}
+.gallery-thumbs img.active { border-color: var(--primary); }
+.gallery-thumbs img:hover { border-color: var(--border); }
+
+.modal-info {
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+}
+.modal-cat { font-size: 11px; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 7px; }
+.modal-name { font-size: 19px; font-weight: 800; color: var(--text-1); line-height: 1.3; margin-bottom: 14px; }
+.modal-price-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border-light);
+}
+.modal-price { font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 900; color: var(--primary); }
+.modal-price-unit { font-size: 13px; color: var(--text-3); }
+
+/* Options */
+.opt-section { margin-bottom: 18px; }
+.opt-label { font-size: 11px; font-weight: 700; color: var(--text-2); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 9px; }
+.opt-btns { display: flex; flex-wrap: wrap; gap: 7px; }
+.opt-btn {
+  padding: 8px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-2);
+  cursor: pointer;
+  background: var(--white);
+  transition: all var(--tr);
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.opt-btn:hover { border-color: var(--primary-light); color: var(--primary); }
+.opt-btn.selected { border-color: var(--primary); background: var(--primary-pale); color: var(--primary); }
+
+/* Qty */
+.qty-row { display: flex; align-items: center; gap: 0; border: 1.5px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; width: fit-content; margin-bottom: 18px; }
+.qty-btn { width: 36px; height: 36px; border: none; background: var(--bg); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background var(--tr); color: var(--text-2); }
+.qty-btn:hover { background: var(--primary-pale); color: var(--primary); }
+.qty-input { width: 48px; height: 36px; border: none; text-align: center; font-size: 15px; font-weight: 700; color: var(--text-1); outline: none; font-family: 'Outfit', sans-serif; }
+
+.modal-actions { display: flex; gap: 10px; margin-top: auto; }
+.btn-order {
+  flex: 1;
+  background: var(--rose);
+  color: #fff;
+  border: none;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--tr);
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.btn-order:hover { background: var(--rose-hover); transform: translateY(-1px); }
+.btn-show-detail {
+  flex: 1;
+  background: var(--primary-pale);
+  color: var(--primary);
+  border: 1.5px solid var(--border);
+  padding: 13px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--tr);
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.btn-show-detail:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+.detail-section { border-top: 1px solid var(--border-light); padding: 24px; display: none; }
+.detail-section.open { display: block; }
+.detail-section img { width: 100%; display: block; margin-bottom: 3px; }
+
+/* ============================================================
+   ORDER MODAL
+   ============================================================ */
+.order-overlay {
+  position: fixed; inset: 0;
+  background: rgba(26,38,54,.55);
+  backdrop-filter: blur(6px);
+  z-index: 900;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.order-overlay.active { display: flex; }
+
+.order-modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 480px;
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: rise .3s ease;
+}
+.order-modal-header {
+  background: var(--primary);
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order-modal-header h3 { color: #fff; font-size: 16px; font-weight: 700; }
+.order-modal-body { padding: 24px; }
+
+.bank-box {
+  background: var(--primary-pale);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-bottom: 20px;
+}
+.bank-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bank-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--border-light); font-size: 13px; }
+.bank-row:last-child { border-bottom: none; }
+.bank-lbl { color: var(--text-3); font-size: 11.5px; }
+.bank-val { font-weight: 700; color: var(--text-1); }
+.bank-val.accent { color: var(--rose); font-family: 'Outfit', sans-serif; font-size: 16px; }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 13px; }
+.form-lbl { font-size: 11px; font-weight: 700; color: var(--text-2); text-transform: uppercase; letter-spacing: .8px; }
+.form-input, .form-textarea {
+  padding: 11px 13px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: var(--text-1);
+  background: var(--white);
+  transition: border-color var(--tr);
+  width: 100%;
+}
+.form-input:focus, .form-textarea:focus { outline: none; border-color: var(--primary); }
+.form-textarea { height: 76px; resize: vertical; }
+
+.form-notice {
+  background: #FFF8EC;
+  border: 1px solid #F5D99B;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #9A6A0A;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.btn-submit {
+  width: 100%;
+  background: var(--rose);
+  color: #fff;
+  border: none;
+  padding: 15px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--tr);
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.btn-submit:hover { background: var(--rose-hover); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(232,112,138,.3); }
+
+/* SUCCESS */
+.success-overlay { position: fixed; inset: 0; background: rgba(26,38,54,.55); z-index: 950; display: none; align-items: center; justify-content: center; }
+.success-overlay.active { display: flex; }
+.success-box { background: var(--white); border-radius: var(--radius-lg); padding: 40px; text-align: center; max-width: 360px; width: 90%; box-shadow: var(--shadow-xl); animation: rise .3s ease; }
+.success-icon { font-size: 52px; margin-bottom: 18px; }
+.success-box h3 { font-size: 20px; font-weight: 800; color: var(--text-1); margin-bottom: 10px; }
+.success-box p { font-size: 13.5px; color: var(--text-2); line-height: 1.8; margin-bottom: 22px; }
+
+/* ============================================================
+   CART DRAWER
+   ============================================================ */
+.cart-drawer {
+  position: fixed; top: 0; right: -420px; bottom: 0;
+  width: 380px;
+  background: var(--white);
+  z-index: 900;
+  box-shadow: -8px 0 40px rgba(26,38,54,.18);
+  display: flex;
+  flex-direction: column;
+  transition: right .35s cubic-bezier(.4,0,.2,1);
+  border-left: 1px solid var(--border);
+}
+.cart-drawer.open { right: 0; }
+.cart-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(26,38,54,.4);
+  backdrop-filter: blur(4px);
+  z-index: 899;
+  display: none;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.cart-backdrop.active { display: block; opacity: 1; }
+
+.cart-header {
+  padding: 18px 22px;
+  border-bottom: 1.5px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cart-header-title { font-size: 16px; font-weight: 800; color: var(--text-1); display: flex; align-items: center; gap: 8px; }
+.cart-close-btn { background: var(--bg); border: 1.5px solid var(--border); color: var(--text-2); font-size: 16px; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all var(--tr); }
+.cart-close-btn:hover { background: var(--rose-pale); color: var(--rose); border-color: var(--rose); }
+
+.cart-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+.cart-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-3);
+}
+.cart-empty .cart-empty-icon { font-size: 42px; margin-bottom: 14px; }
+.cart-empty p { font-size: 14px; }
+
+.cart-item {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-light);
+  align-items: flex-start;
+}
+.cart-item:last-child { border-bottom: none; }
+.cart-item-img {
+  width: 64px; height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid var(--border-light);
+  flex-shrink: 0;
+  background: var(--bg);
+}
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-size: 13px; font-weight: 700; color: var(--text-1); line-height: 1.4; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-item-opt { font-size: 11px; color: var(--text-3); margin-bottom: 8px; }
+.cart-item-row { display: flex; align-items: center; justify-content: space-between; }
+.cart-item-price { font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 900; color: var(--primary); }
+.cart-qty-row { display: flex; align-items: center; gap: 0; border: 1.5px solid var(--border); border-radius: 6px; overflow: hidden; }
+.cart-qty-btn { width: 26px; height: 26px; border: none; background: var(--bg); font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-2); transition: background var(--tr); }
+.cart-qty-btn:hover { background: var(--primary-pale); color: var(--primary); }
+.cart-qty-val { width: 32px; text-align: center; font-size: 13px; font-weight: 700; border: none; outline: none; font-family: 'Outfit', sans-serif; background: var(--white); }
+.cart-item-remove { background: none; border: none; color: var(--rose); font-size: 13px; cursor: pointer; padding: 2px 6px; border-radius: 4px; transition: background var(--tr); margin-left: 4px; }
+.cart-item-remove:hover { background: var(--rose-pale); }
+
+.cart-footer {
+  padding: 16px 20px;
+  border-top: 1.5px solid var(--border);
+  background: var(--bg);
+}
+.cart-total-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.cart-total-label { font-size: 13px; color: var(--text-2); font-weight: 600; }
+.cart-total-price { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 900; color: var(--rose); }
+.btn-cart-order { width: 100%; background: var(--rose); color: #fff; border: none; padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all var(--tr); font-family: 'Noto Sans KR', sans-serif; }
+.btn-cart-order:hover { background: var(--rose-hover); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(232,112,138,.3); }
+
+/* Cart Icon in header */
+.cart-icon-btn {
+  position: relative;
+  background: var(--primary-pale);
+  border: 1.5px solid var(--border);
+  color: var(--primary);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--tr);
+  margin-right: 6px;
+}
+.cart-icon-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+.cart-badge {
+  position: absolute;
+  top: -5px; right: -5px;
+  background: var(--rose);
+  color: #fff;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
+  border: 1.5px solid var(--white);
+}
+.cart-badge.show { display: flex; }
+
+/* Card add-to-cart button */
+.card-cart-btn {
+  width: 36px; height: 36px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--tr);
+  flex-shrink: 0;
+}
+.card-cart-btn:hover { background: var(--primary-light); transform: scale(1.1); }
+
+/* discount badge on card */
+.card-discount {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--rose);
+  margin-right: 4px;
+}
+.card-original-price {
+  font-size: 11px;
+  color: var(--text-3);
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+/* modal discount */
+.modal-discount-wrap { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.modal-discount-pct { font-size: 13px; font-weight: 800; color: var(--rose); background: var(--rose-pale); padding: 2px 8px; border-radius: 100px; }
+.modal-original-price { font-size: 13px; color: var(--text-3); text-decoration: line-through; }
+
+/* ============================================================
+   UTILITY
+   ============================================================ */
+.scroll-top {
+  position: fixed; bottom: 24px; right: 24px;
+  width: 44px; height: 44px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  z-index: 400;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--tr);
+}
+.scroll-top.show { display: flex; }
+.scroll-top:hover { background: var(--primary-light); transform: translateY(-3px); }
+
+.admin-chip {
+  position: fixed; bottom: 76px; right: 24px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  color: var(--text-2);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 100px;
+  text-decoration: none;
+  z-index: 400;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--tr);
+}
+.admin-chip:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-pale); }
+.tower-chip {
+  position: fixed; bottom: 110px; right: 24px;
+  background: linear-gradient(135deg,#0a0a14,#1e1e3a);
+  border: 1.5px solid #00d4ff;
+  color: #00d4ff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 100px;
+  text-decoration: none;
+  z-index: 400;
+  box-shadow: 0 0 12px rgba(0,212,255,.25);
+  transition: all var(--tr);
+  animation: towerGlow 2s ease-in-out infinite;
+}
+@keyframes towerGlow{0%,100%{box-shadow:0 0 8px rgba(0,212,255,.2);}50%{box-shadow:0 0 18px rgba(0,212,255,.5);}}
+.tower-chip:hover{background:#00d4ff;color:#000;box-shadow:0 0 24px rgba(0,212,255,.6);}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .header-nav { display: none; }
+  .attacker-inner { grid-template-columns: 1fr; }
+  .attacker-img-box { order: -1; }
+  .modal-main { grid-template-columns: 1fr; }
+  .modal-gallery { border-right: none; border-bottom: 1px solid var(--border-light); }
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .bundle-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 28px; }
+  .cart-drawer { width: 100%; right: -100%; }
+}
+@media (max-width: 480px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 9px; }
+  .card-name { font-size: 12px; }
+  .card-price { font-size: 16px; }
+}
+
+/* MD PICK 4열 그리드 */
+.md-pick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media (max-width: 1024px) {
+  .md-pick-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .md-pick-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="notice-bar" id="notice-bar">🔒 키친플래그 폐쇄몰 · 외부 공유 금지</div>
+  <div class="header-main">
+    <a href="#" class="logo">
+      <span class="logo-mark" id="logo-text">KF_St</span>
+      <span class="logo-sub" id="logo-sub">KitchenFlag Standard</span>
+    </a>
+    <nav class="header-nav">
+      <a href="#products">전체 상품</a>
+      <a href="#attacker">이달의 공격수</a>
+      <a href="#md-pick">MD 추천</a>
+      <a href="#bundle">세트 상품</a>
+      <a href="admin.html">관리자</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <button class="cart-icon-btn" id="cart-icon-btn" onclick="openCart()" title="장바구니">
+        🛒
+        <span class="cart-badge" id="cart-badge">0</span>
+      </button>
+      <button class="btn-cta" onclick="openCart()">🛍️ 장바구니</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">🇰🇷 KitchenFlag PB · Members Only</div>
+  <h1 id="hero-title">주방의 기준을<br><em>새로</em> <span>씁니다</span></h1>
+  <p class="hero-desc" id="hero-desc">키친플래그가 직접 기획한 8종의 프리미엄 PB 상품.<br>폐쇄몰 전용 특가로 지금 만나보세요.</p>
+  <div class="hero-btns">
+    <a href="#products" class="btn-primary">폐쇄몰 특가 상품 보기 →</a>
+    <button class="btn-outline-primary" onclick="document.getElementById('cart-icon-btn').scrollIntoView({behavior:'smooth'}); openCart()">🛒 장바구니 담기</button>
+  </div>
+  <div class="hero-chips">
+    <div class="hero-chip"><span class="chip-num">8</span>종 단독 기획상품</div>
+    <div class="hero-chip">🏆 폐쇄몰 단독 특가 찬스</div>
+    <div class="hero-chip">✨ 주방의 품격을 높이는 선택</div>
+    <div class="hero-chip">🔒 한정 수량 단독 할인</div>
+  </div>
+</section>
+
+<!-- [이달의 공격수] -->
+<section class="attacker-section" id="attacker">
+  <div class="attacker-inner">
+    <div>
+      <div class="attacker-tag">⚡ 이달의 공격수</div>
+      <h2 class="attacker-title" id="atk-title">타포린백 분리수거함<br>3단 세트</h2>
+      <p class="attacker-body" id="atk-body">
+        트렌디한 타포린 소재의 분리수거함.<br>
+        접이식 3단 구성으로 <strong>공간 효율 극대화</strong>.<br>
+        정가 대비 <strong>36% 할인</strong>된 폐쇄몰 단독 특가!
+      </p>
+      <div class="attacker-kpi">
+        <div class="attacker-kpi-item">
+          <span class="attacker-kpi-num" id="atk-price">15,900원</span>
+          <span class="attacker-kpi-label">폐쇄몰 특가</span>
+        </div>
+        <div class="attacker-kpi-item">
+          <span class="attacker-kpi-num" id="atk-pct">36%↓</span>
+          <span class="attacker-kpi-label">할인율</span>
+        </div>
+        <div class="attacker-kpi-item">
+          <span class="attacker-kpi-num" id="atk-badge">BEST</span>
+          <span class="attacker-kpi-label">인기상품</span>
+        </div>
+      </div>
+      <div class="attacker-btns">
+        <button class="btn-white" id="atk-detail-btn" onclick="openProduct(6)">상품 상세보기</button>
+        <button class="btn-ghost-white" id="atk-cart-btn" onclick="addToCart(products[6]);openCart()">🛒 장바구니 담기</button>
+      </div>
+    </div>
+    <div class="attacker-img-box">
+      <img class="attacker-img" id="atk-img"
+           src="../01_Product_Master/DMC_터블,키친플래그 이미지자료/키친플래그 타포린백 분리수거함 3단 세트/썸네일/1.jpg"
+           onerror="this.src='https://placehold.co/500x500/4AABCF/fff?text=타포린백+분리수거함'"
+           alt="타포린백 분리수거함 3단 세트"
+           onclick="openProduct(6)">
+      <div class="attacker-badge">이달의<br>공격수</div>
+    </div>
+  </div>
+</section>
+
+<!-- 전체 상품 -->
+<section class="section" id="products" style="background:var(--white);">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">All Products</div>
+        <h2 class="section-title">키친플래그 PB 전체 상품</h2>
+        <p class="section-sub">8종의 단독 기획 상품 — 퀄리티와 가격 모두 잡았습니다</p>
+      </div>
+    </div>
+    <div class="product-grid" id="product-grid"></div>
+  </div>
+</section>
+
+<!-- MD 추천 -->
+<section class="section" id="md-pick" style="background:var(--bg);">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow mint">MD Pick</div>
+        <h2 class="section-title">MD 추천 상품</h2>
+        <p class="section-sub">바이어가 직접 선별한 8종 큐레이션</p>
+      </div>
+    </div>
+    <div class="md-pick-grid" id="md-pick-grid"></div>
+  </div>
+</section>
+
+<!-- 세트 상품 -->
+<section class="section" id="bundle" style="background:var(--white);">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow rose">Bundle</div>
+        <h2 class="section-title">세트 구매 시 추가 할인</h2>
+        <p class="section-sub">가성비 최고의 구성 — 함께 구매할수록 더 큰 혜택!</p>
+      </div>
+    </div>
+    <div class="bundle-grid">
+      <div class="bundle-card blue" onclick="openOrderModal({name:'키친 스타터 세트 (냄비+채반)',price:37900,category:'번들'})">
+        <div class="bundle-eyebrow">★ Starter Bundle</div>
+        <div class="bundle-name">키친 스타터 세트<br><small style="font-size:13px;font-weight:500;color:var(--text-2)">냄비 3종 + 슬라이드 채반</small></div>
+        <ul class="bundle-items">
+          <li>스테인레스 304 냄비 3종 세트</li>
+          <li>스테인레스304 슬라이드 채반</li>
+          <li>세트 구매 시 추가 5% 할인 적용</li>
+        </ul>
+        <div class="bundle-footer">
+          <span class="bundle-price">37,900원</span>
+          <button class="bundle-btn">주문하기</button>
+        </div>
+      </div>
+      <div class="bundle-card mint" onclick="openOrderModal({name:'주방 위생 완성 세트',price:24900,category:'번들'})">
+        <div class="bundle-eyebrow">🔥 Hygiene Bundle</div>
+        <div class="bundle-name">주방 위생 완성 세트<br><small style="font-size:13px;font-weight:500;color:var(--text-2)">극세사 행주 + 미니타월 + 오일스프레이</small></div>
+        <ul class="bundle-items">
+          <li>극세사 행주 5개입 세트</li>
+          <li>홈 소프트 미니타월 2p</li>
+          <li>오일스프레이 4p SET</li>
+        </ul>
+        <div class="bundle-footer">
+          <span class="bundle-price">24,900원</span>
+          <button class="bundle-btn">주문하기</button>
+        </div>
+      </div>
+      <div class="bundle-card rose" onclick="openOrderModal({name:'수납 마스터 세트 (밀폐찬통+타포린백)',price:26900,category:'번들'})">
+        <div class="bundle-eyebrow">💎 Storage Bundle</div>
+        <div class="bundle-name">수납 마스터 세트<br><small style="font-size:13px;font-weight:500;color:var(--text-2)">밀폐찬통 8p + 타포린백 분리수거함</small></div>
+        <ul class="bundle-items">
+          <li>스테인레스304 밀폐찬통 8p</li>
+          <li>타포린백 분리수거함 3단 세트</li>
+          <li>세트 구매 시 추가 5% 할인 적용</li>
+        </ul>
+        <div class="bundle-footer">
+          <span class="bundle-price">26,900원</span>
+          <button class="bundle-btn">주문하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO BAR -->
+<div class="info-bar">
+  <div class="info-grid">
+    <div class="info-item">
+      <div class="info-icon">🏆</div>
+      <div class="info-title">폐쇄몰 단독 특가 찬스</div>
+      <div class="info-desc">정가 대비 최대 36% 할인<br>폐쇄몰 회원만 누리는 단독 혜택</div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📦</div>
+      <div class="info-title">안전 포장 배송</div>
+      <div class="info-desc">주문 확인 후<br>신속하게 발송합니다</div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">🔒</div>
+      <div class="info-title">폐쇄몰 전용 채널</div>
+      <div class="info-desc">외부 공유 금지<br>내부 구성원 전용 채널</div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">💬</div>
+      <div class="info-title">상품 문의 CS</div>
+      <div class="info-desc"><a href="mailto:dg.lee@dmcmedia.co.kr" style="color:var(--primary);font-weight:600;">dg.lee@dmcmedia.co.kr</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo" id="footer-logo">KF_St</div>
+      <p>키친플래그 폐쇄몰.<br>8종 PB 상품을 회원 특가로 제공합니다.</p>
+    </div>
+    <div class="footer-info">
+      <p><strong>상품 문의 CS</strong></p>
+      <p><a href="mailto:dg.lee@dmcmedia.co.kr" style="color:rgba(255,255,255,.75);">📧 dg.lee@dmcmedia.co.kr</a></p>
+      <p style="margin-top:10px;"><strong>주문 관련 안내</strong></p>
+      <p>주문 접수 후 담당자가 개별 연락드립니다.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 KitchenFlag Standard. 폐쇄몰 — 외부 유출 금지.</div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<a href="admin.html" class="admin-chip">🔐 관리자</a>
+<a href="tower.html" class="tower-chip" target="_blank">⚡ 관제탑</a>
+
+<!-- CART DRAWER -->
+<div class="cart-backdrop" id="cart-backdrop" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-header">
+    <div class="cart-header-title">🛒 장바구니 <span id="cart-count-label" style="font-size:13px;color:var(--text-3);font-weight:500;"></span></div>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cart-body">
+    <div class="cart-empty" id="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <p>장바구니가 비어있습니다<br><span style="font-size:12px;color:var(--text-3);">원하는 상품을 담아보세요!</span></p>
+    </div>
+    <div id="cart-items"></div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none;">
+    <div class="cart-total-row">
+      <span class="cart-total-label">총 결제금액</span>
+      <span class="cart-total-price" id="cart-total">0원</span>
+    </div>
+    <button class="btn-cart-order" onclick="checkoutFromCart()">주문서 작성 →</button>
+  </div>
+</div>
+
+<!-- ============================================================  PRODUCT DETAIL MODAL ============================================================ -->
+<div class="overlay" id="detailOverlay">
+  <div class="detail-modal">
+    <div class="modal-header">
+      <h2 id="m-title">상품 상세</h2>
+      <button class="modal-close-btn" onclick="closeDetail()">✕</button>
+    </div>
+    <div class="modal-main">
+      <div class="modal-gallery">
+        <img class="gallery-main-img" id="m-main-img" src="" alt="">
+        <div class="gallery-thumbs" id="m-thumbs"></div>
+      </div>
+      <div class="modal-info">
+        <div class="modal-cat" id="m-cat"></div>
+        <div class="modal-name" id="m-name"></div>
+        <div class="modal-discount-wrap" id="m-discount-wrap">
+          <span class="modal-discount-pct" id="m-discount-pct"></span>
+          <span class="modal-original-price" id="m-original-price"></span>
+        </div>
+        <div class="modal-price-wrap">
+          <span class="modal-price" id="m-price"></span>
+          <span class="modal-price-unit">원</span>
+        </div>
+        <div class="opt-section" id="m-opt-section" style="display:none;">
+          <div class="opt-label">색상 옵션 선택</div>
+          <div class="opt-btns" id="m-opt-btns"></div>
+        </div>
+        <div class="opt-section">
+          <div class="opt-label">수량</div>
+          <div class="qty-row">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <input class="qty-input" id="qty-input" type="number" value="1" min="1" max="99">
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-order" id="m-order-btn">🛒 장바구니 담기</button>
+          <button class="btn-show-detail" id="m-detail-btn">상세 보기 ↓</button>
+        </div>
+      </div>
+    </div>
+    <div class="detail-section" id="detail-section">
+      <div id="detail-imgs"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================  ORDER MODAL ============================================================ -->
+<div class="order-overlay" id="orderOverlay">
+  <div class="order-modal">
+    <div class="order-modal-header">
+      <h3>🛒 주문서 작성</h3>
+      <button class="modal-close-btn" onclick="closeOrder()">✕</button>
+    </div>
+    <div class="order-modal-body">
+      <div class="bank-box">
+        <div class="bank-title">🏦 IBK기업은행 입금 계좌</div>
+        <div class="bank-row"><span class="bank-lbl">계좌번호</span><span class="bank-val">337-066891-01-010</span></div>
+        <div class="bank-row"><span class="bank-lbl">예금주</span><span class="bank-val">이덕기</span></div>
+        <div class="bank-row"><span class="bank-lbl">입금 금액</span><span class="bank-val accent" id="o-total">—</span></div>
+      </div>
+      <div class="form-group">
+        <label class="form-lbl">주문 상품</label>
+        <input class="form-input" id="o-product" type="text" readonly>
+      </div>
+      <div class="form-group">
+        <label class="form-lbl">주문자 이름</label>
+        <input class="form-input" id="o-buyer" type="text" placeholder="홍길동">
+      </div>
+      <div class="form-group">
+        <label class="form-lbl">연락처</label>
+        <input class="form-input" id="o-phone" type="tel" placeholder="010-0000-0000">
+      </div>
+      <div class="form-group">
+        <label class="form-lbl">배송지 주소</label>
+        <input class="form-input" id="o-addr" type="text" placeholder="서울시 강남구 …">
+      </div>
+      <div class="form-group">
+        <label class="form-lbl">요청사항</label>
+        <textarea class="form-textarea" id="o-note" placeholder="배송 요청사항 (선택)"></textarea>
+      </div>
+      <div class="form-notice">⚠️ 무통장 입금 후 주문이 확정됩니다. 입금자명을 주문자 이름과 동일하게 해주세요.</div>
+      <button class="btn-submit" onclick="submitOrder()">입금 완료 후 주문 확정 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-box">
+    <div class="success-icon">✅</div>
+    <h3>주문이 접수되었습니다!</h3>
+    <p>확인 후 담당자가 연락드립니다.<br>IBK 337-066891-01-010(이덕기)으로<br>입금 부탁드립니다.</p>
+    <button class="btn-primary" onclick="document.getElementById('successOverlay').classList.remove('active')">확인</button>
+  </div>
+</div>
+
+<!-- ===== 외부 JS 로드 순서: config → tower-logic → UI ===== -->
+<script>
+/* ============================================================
+   config.js — KF_St 쇼핑몰 설정 & 상품 데이터
+   index.html 에서 <script src="config.js"> 로 불러옵니다.
+   ============================================================ */
+
+/* ===== LOCAL THUMBNAIL BASE PATH ===== */
+const LOCAL_BASE = '../01_Product_Master/DMC_터블,키친플래그 이미지자료/';
+
+function localThumb(folder, file) {
+  if (typeof folder === 'object') {
+    /* 객체를 직접 받는 경우 (tower-logic / attacker 등) */
+    const p = folder;
+    /* ① 관리자 업로드 Base64 최우선 */
+    if (p.thumbDataUrl) return p.thumbDataUrl;
+    /* ② 로컬 폴더 썸네일 */
+    const base = '../01_Product_Master/DMC_터블,키친플래그 이미지자료';
+    return p.thumbFiles && p.thumbFiles.length
+      ? `${base}/${p.folder}/썸네일/${p.thumbFiles[0]}`
+      : `https://placehold.co/400x400/e0f0ff/003366?text=${encodeURIComponent(p.shortName || p.name)}`;
+  }
+  /* 폴더+파일 문자열 형태 */
+  return LOCAL_BASE + folder + '/썸네일/' + file;
+}
+
+/* ===== MALL CONFIG =====
+   ★ localStorage 값이 일부 필드만 있어도 기본값과 deep-merge해서 undefined 방지
+   ============================================================ */
+const _MALL_CONFIG_DEFAULTS = {
+  mallName:    'KF_St',
+  mallSubName: 'KitchenFlag Standard',
+  heroTitle:   '주방의 기준을<br><em>새로</em> <span>씁니다</span>',
+  heroDesc:    '키친플래그가 직접 기획한 8종의 프리미엄 PB 상품.<br>폐쇄몰 전용 특가로 지금 만나보세요.',
+  noticeText:  '🔒 키친플래그 폐쇄몰 · 외부 공유 금지',
+};
+const MALL_CONFIG = Object.assign(
+  {},
+  _MALL_CONFIG_DEFAULTS,
+  JSON.parse(localStorage.getItem('kfst_config') || 'null') || {}
+);
+
+/* ===== PRODUCT DATA =====
+   ⚠️ cost 필드는 관리자 전용 — 고객 화면에 절대 렌더링 금지
+   ============================================================ */
+const PRODUCTS_DEFAULT = [
+  {
+    id: 0, name: '키친플래그 극세사 행주 5개입 세트', shortName: '극세사 행주 5개입 세트',
+    category: '주방용품', price: 5300, originalPrice: 7900, cost: 5200, badge: 'BEST',
+    folder: '키친플래그 극세사 행주 5개입 세트',
+    thumbFiles: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg'],
+    detailImgs: [
+      'https://gi.esmplus.com/dmcmedia/극세사행주_4/1.jpg','https://gi.esmplus.com/dmcmedia/극세사행주_4/2.jpg',
+      'https://gi.esmplus.com/dmcmedia/극세사행주_4/3.jpg','https://gi.esmplus.com/dmcmedia/극세사행주_4/4.gif',
+      'https://gi.esmplus.com/dmcmedia/극세사행주_4/5.gif','https://gi.esmplus.com/dmcmedia/극세사행주_4/6.jpg',
+      'https://gi.esmplus.com/dmcmedia/극세사행주_4/6_02.gif','https://gi.esmplus.com/dmcmedia/극세사행주_4/7.jpg',
+    ], hasOption: false, displayed: true,
+  },
+  {
+    id: 1, name: '키친플래그 블랙 시그니처 칼가위 6종 세트', shortName: '블랙 시그니처 칼가위 6종 세트',
+    category: '주방용품', price: 12900, originalPrice: 19900, cost: 11500, badge: 'NEW',
+    folder: '키친플래그 블랙 시그니처 칼가위 6종 세트',
+    thumbFiles: ['0.jpg','1.jpg','2.jpg','3.jpg'],
+    detailImgs: [
+      'https://gi.esmplus.com/dmcmedia/zz/1_01_01.jpg','https://gi.esmplus.com/dmcmedia/zz/1_01_03.jpg',
+      'https://gi.esmplus.com/dmcmedia/zz/1_01_02.jpg','https://gi.esmplus.com/dmcmedia/zz/2_01.jpg',
+    ], hasOption: false, displayed: true,
+  },
+  {
+    id: 2, name: '키친플래그 스테인레스 304 냄비 3종 세트', shortName: '스테인레스 304 냄비 3종 세트',
+    category: '주방용품', price: 29900, originalPrice: 44000, cost: 26000, badge: 'BEST',
+    folder: '키친플래그 스테인레스 304 냄비 3종 세트',
+    thumbFiles: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg'],
+    detailImgs: [
+      'https://gi.esmplus.com/dmcmedia/냄비3세트_8/1.jpg','https://gi.esmplus.com/dmcmedia/냄비3세트_8/2.jpg',
+      'https://gi.esmplus.com/dmcmedia/냄비3세트_8/3.gif','https://gi.esmplus.com/dmcmedia/냄비3세트_8/4.jpg',
+      'https://gi.esmplus.com/dmcmedia/냄비3세트_8/5.gif','https://gi.esmplus.com/dmcmedia/냄비3세트_8/6.jpg',
+      'https://gi.esmplus.com/dmcmedia/냄비3세트_8/7.gif','https://gi.esmplus.com/dmcmedia/냄비3세트_8/8.gif',
+      'https://gi.esmplus.com/dmcmedia/냄비3세트_8/9.jpg','https://gi.esmplus.com/dmcmedia/냄비3세트_8/10.gif',
+      'https://gi.esmplus.com/dmcmedia/냄비3세트_8/11.gif','https://gi.esmplus.com/dmcmedia/냄비3세트_8/12.gif',
+      'https://gi.esmplus.com/dmcmedia/냄비3세트_8/13.jpg','https://gi.esmplus.com/dmcmedia/냄비3세트_8/14.gif',
+      'https://gi.esmplus.com/dmcmedia/냄비3세트_8/15.jpg',
+    ], hasOption: false, displayed: true,
+  },
+  {
+    id: 3, name: '키친플래그 스테인레스304 밀폐찬통 8p 세트', shortName: '스테인레스304 밀폐찬통 8p',
+    category: '주방용품', price: 13900, originalPrice: 19900, cost: 14200, badge: '',
+    folder: '키친플래그 스테인레스304 밀폐찬통 8p 세트(350ml2ea, 550ml2ea)',
+    thumbFiles: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg'],
+    detailImgs: [
+      'https://gi.esmplus.com/dmcmedia/밀폐찬통_5/1.jpg','https://gi.esmplus.com/dmcmedia/밀폐찬통_5/2.jpg',
+      'https://gi.esmplus.com/dmcmedia/밀폐찬통_5/3.gif','https://gi.esmplus.com/dmcmedia/밀폐찬통_5/4.jpg',
+      'https://gi.esmplus.com/dmcmedia/밀폐찬통_5/5.gif','https://gi.esmplus.com/dmcmedia/밀폐찬통_5/6.gif',
+      'https://gi.esmplus.com/dmcmedia/밀폐찬통_5/7.jpg','https://gi.esmplus.com/dmcmedia/밀폐찬통_5/8.gif',
+      'https://gi.esmplus.com/dmcmedia/밀폐찬통_5/9.jpg','https://gi.esmplus.com/dmcmedia/밀폐찬통_5/10.gif',
+      'https://gi.esmplus.com/dmcmedia/밀폐찬통_5/11.jpg',
+    ], hasOption: false, displayed: true,
+  },
+  {
+    id: 4, name: '키친플래그 스테인레스304 슬라이드 채반', shortName: '스테인레스304 슬라이드 채반',
+    category: '주방용품', price: 10900, originalPrice: 16900, cost: 11000, badge: '',
+    folder: '키친플래그 스테인레스304 슬라이드 채반',
+    thumbFiles: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg'],
+    detailImgs: [
+      'https://gi.esmplus.com/dmcmedia/채반_8/1.jpg','https://gi.esmplus.com/dmcmedia/채반_8/2.jpg',
+      'https://gi.esmplus.com/dmcmedia/채반_8/3.gif','https://gi.esmplus.com/dmcmedia/채반_8/4.jpg',
+      'https://gi.esmplus.com/dmcmedia/채반_8/5.gif','https://gi.esmplus.com/dmcmedia/채반_8/6.jpg',
+      'https://gi.esmplus.com/dmcmedia/채반_8/6_02.gif','https://gi.esmplus.com/dmcmedia/채반_8/7.jpg',
+      'https://gi.esmplus.com/dmcmedia/채반_8/7_02.gif','https://gi.esmplus.com/dmcmedia/채반_8/8.jpg',
+      'https://gi.esmplus.com/dmcmedia/채반_8/9.jpg',
+    ], hasOption: false, displayed: true,
+  },
+  {
+    id: 5, name: '키친플래그 오일스프레이 4p SET (220ml4p)', shortName: '오일스프레이 4p SET',
+    category: '주방용품', price: 12900, originalPrice: 18900, cost: 9700, badge: 'BEST',
+    folder: '키친플래그 오일스프레이 4p SET (220ml4p)',
+    thumbFiles: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg','11.jpg'],
+    detailImgs: [
+      'https://gi.esmplus.com/dmcmedia/오일스프레이_6/1.jpg','https://gi.esmplus.com/dmcmedia/오일스프레이_6/2.gif',
+      'https://gi.esmplus.com/dmcmedia/오일스프레이_6/3.jpg','https://gi.esmplus.com/dmcmedia/오일스프레이_6/4.gif',
+      'https://gi.esmplus.com/dmcmedia/오일스프레이_6/5.jpg','https://gi.esmplus.com/dmcmedia/오일스프레이_6/6.jpg',
+      'https://gi.esmplus.com/dmcmedia/오일스프레이_6/7.gif','https://gi.esmplus.com/dmcmedia/오일스프레이_6/7_2.gif',
+      'https://gi.esmplus.com/dmcmedia/오일스프레이_6/8.jpg','https://gi.esmplus.com/dmcmedia/오일스프레이_6/9.jpg',
+    ], hasOption: false, displayed: true,
+  },
+  {
+    id: 6, name: '키친플래그 타포린백 분리수거함 3단 세트', shortName: '타포린백 분리수거함 3단 세트',
+    category: '생활용품', price: 15900, originalPrice: 24900, cost: 8900, badge: 'BEST',
+    folder: '키친플래그 타포린백 분리수거함 3단 세트',
+    thumbFiles: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg'],
+    detailImgs: [
+      'https://gi.esmplus.com/dmcmedia/타포린백_4/1.jpg','https://gi.esmplus.com/dmcmedia/타포린백_4/2.jpg',
+      'https://gi.esmplus.com/dmcmedia/타포린백_4/3.jpg','https://gi.esmplus.com/dmcmedia/타포린백_4/4.gif',
+      'https://gi.esmplus.com/dmcmedia/타포린백_4/5.jpg','https://gi.esmplus.com/dmcmedia/타포린백_4/6.gif',
+      'https://gi.esmplus.com/dmcmedia/타포린백_4/7.gif','https://gi.esmplus.com/dmcmedia/타포린백_4/7_02.gif',
+      'https://gi.esmplus.com/dmcmedia/타포린백_4/8.jpg',
+    ], hasOption: false, displayed: true,
+  },
+  {
+    id: 7, name: '키친플래그 홈 소프트 데일리 미니타월 2p 세트', shortName: '홈 소프트 미니타월 2p 세트',
+    category: '생활용품', price: 8900, originalPrice: 13900, cost: 8600, badge: 'NEW',
+    folder: '키친플래그 홈 소프트 데일리 미니타월 2p 세트',
+    thumbFiles: ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg'],
+    detailImgs: [
+      'https://gi.esmplus.com/dmcmedia/타월_04/1.jpg','https://gi.esmplus.com/dmcmedia/타월_04/2.jpg',
+      'https://gi.esmplus.com/dmcmedia/타월_04/3.jpg','https://gi.esmplus.com/dmcmedia/타월_04/4.jpg',
+      'https://gi.esmplus.com/dmcmedia/타월_04/5.gif','https://gi.esmplus.com/dmcmedia/타월_04/6.jpg',
+      'https://gi.esmplus.com/dmcmedia/타월_04/7.jpg','https://gi.esmplus.com/dmcmedia/타월_04/8.gif',
+      'https://gi.esmplus.com/dmcmedia/타월_04/9.jpg','https://gi.esmplus.com/dmcmedia/타월_04/10.jpg',
+    ], hasOption: true, options: ['딥브라운+딥브라운스트라이프', '아이보리+핑크스트라이프'], displayed: true,
+  },
+];
+
+/* ===== PRODUCTS_MAP (ID 빠른 조회) ===== */
+const PRODUCTS_MAP = {};
+PRODUCTS_DEFAULT.forEach(p => { PRODUCTS_MAP[p.id] = p; });
+
+/* ===== products (런타임 — admin 덮어쓰기 병합) =====
+   ★ PRODUCTS_DEFAULT에 없는 신규 상품(관리자 등록) 도 자동 추가
+   ============================================================ */
+let products = JSON.parse(JSON.stringify(PRODUCTS_DEFAULT));
+const _savedProducts = JSON.parse(localStorage.getItem('kfst_products') || 'null');
+if (_savedProducts) {
+  _savedProducts.forEach(sp => {
+    const p = products.find(x => x.id === sp.id);
+    if (p) {
+      /* 기존 상품 — 저장된 값으로 덮어쓰기 */
+      Object.assign(p, sp);
+    } else {
+      /* 신규 상품 (관리자에서 추가한 상품) — 배열에 append */
+      products.push(Object.assign({
+        shortName: sp.name, category: '주방용품',
+        folder: '', thumbFiles: [], detailImgs: [],
+        hasOption: false, displayed: true,
+      }, sp));
+    }
+  });
+}
+
+</script>
+<script>
+/* ============================================================
+   tower-logic.js — 관제탑(tower.html) ↔ 폐쇄몰(index.html) 실시간 동기화 로직
+   config.js 가 먼저 로드된 후 이 파일을 불러와야 합니다.
+
+   ▣ 동기화 이중 안전망:
+     1) BroadcastChannel — 같은 브라우저 내 탭 간 즉시 통신 (지연 0ms)
+     2) setInterval 2초 폴링 — 백업. BroadcastChannel 미지원 환경 대비
+     3) window.addEventListener('storage') — 다른 브라우저 창 열 경우 대비
+   ============================================================ */
+
+/* ── BroadcastChannel 수신 (관제탑이 쏜 메시지를 즉시 받음) ── */
+let _bc = null;
+try {
+  _bc = new BroadcastChannel('kfst_sync');
+  _bc.onmessage = function(e) {
+    if (e.data && (e.data.key === 'kfst_config' || e.data.key === 'kfst_products')) {
+      liveSync();
+    }
+  };
+} catch(e) { /* BroadcastChannel 미지원 브라우저 대비 */ }
+
+/* ── 현재 스냅샷 (폴링 중복 방지) ── */
+let _syncSnapshot = {
+  cfg:  localStorage.getItem('kfst_config')   || '',
+  prod: localStorage.getItem('kfst_products') || '',
+};
+
+/* ===========================================
+   CONFIG 적용
+   =========================================== */
+function applyCfgLive(cfg) {
+  const nb = document.getElementById('notice-bar');
+  const ht = document.getElementById('hero-title');
+  const hd = document.getElementById('hero-desc');
+
+  if (cfg.noticeText && nb) nb.textContent = cfg.noticeText;
+  if (cfg.heroTitle  && ht) ht.innerHTML  = cfg.heroTitle;
+  if (cfg.heroDesc   && hd) hd.innerHTML  = cfg.heroDesc;
+
+  /* 이달의 공격수 변경 */
+  if (cfg.attackerId !== undefined) {
+    const pid = cfg.attackerId;
+    const def = PRODUCTS_MAP[pid];
+    if (!def) return;
+    const cur = products.find(x => x.id === pid) || def;
+    const pct = cur.originalPrice
+      ? Math.round((1 - cur.price / cur.originalPrice) * 100)
+      : 0;
+
+    const atkTitle  = document.getElementById('atk-title');
+    const atkPrice  = document.getElementById('atk-price');
+    const atkPct    = document.getElementById('atk-pct');
+    const atkBadge  = document.getElementById('atk-badge');
+    const atkImg    = document.getElementById('atk-img');
+    const atkDetail = document.getElementById('atk-detail-btn');
+    const atkCart   = document.getElementById('atk-cart-btn');
+
+    if (atkTitle) atkTitle.innerHTML = (def.shortName || def.name).replace(/\s(\S+)$/, '<br>$1');
+    if (atkPrice) atkPrice.textContent = cur.price.toLocaleString() + '원';
+    if (atkPct)   atkPct.textContent   = pct + '%↓';
+    if (atkBadge) atkBadge.textContent = cur.badge || 'HOT';
+    if (atkImg) {
+      atkImg.src     = localThumb(def);
+      atkImg.alt     = def.shortName || def.name;
+      atkImg.onclick = () => openProduct(pid);
+    }
+    if (atkDetail) atkDetail.onclick = () => openProduct(pid);
+    if (atkCart)   atkCart.onclick   = () => {
+      addToCart(products.find(x => x.id === pid) || cur);
+      openCart();
+    };
+
+    /* 공격수 섹션 플래시 */
+    const section = document.getElementById('attacker');
+    if (section) {
+      section.style.transition = 'opacity .3s';
+      section.style.opacity    = '0';
+      setTimeout(() => { section.style.opacity = '1'; }, 300);
+    }
+  }
+}
+
+/* ===========================================
+   PRODUCTS 적용
+   =========================================== */
+function applyProductsLive(saved) {
+  products = JSON.parse(JSON.stringify(PRODUCTS_DEFAULT));
+  if (saved) saved.forEach(sp => {
+    const p = products.find(x => x.id === sp.id);
+    if (p) Object.assign(p, sp);
+  });
+  renderGrid();
+  renderSlider();
+}
+
+/* ===========================================
+   공지바 플래시 인디케이터
+   ★ 원래 텍스트를 백업 후 복원해서 덮어쓰기 방지
+   =========================================== */
+function flashNotice(text) {
+  const bar = document.getElementById('notice-bar');
+  if (!bar) return;
+  const savedText  = bar.textContent;   /* ← 현재 공지 텍스트 백업 */
+  const savedBg    = bar.style.background;
+  const savedColor = bar.style.color;
+  bar.style.transition = 'background .3s';
+  bar.style.background = '#ffd700';
+  bar.style.color      = '#1a2636';
+  bar.textContent      = '🔄 ' + text;
+  setTimeout(() => {
+    /* 4초 뒤 원래 공지로 복원 */
+    bar.style.background = savedBg    || '';
+    bar.style.color      = savedColor || '';
+    /* notice-bar 텍스트는 applyCfgLive 가 이미 갱신했으므로 재조회 */
+    const latest = JSON.parse(localStorage.getItem('kfst_config') || '{}');
+    bar.textContent = latest.noticeText || savedText;
+  }, 4000);
+}
+
+/* ===========================================
+   핵심 동기화 함수 — liveSync()
+   BroadcastChannel / storage 이벤트 / 폴링 모두 이 함수를 부름
+   =========================================== */
+function liveSync() {
+  try {
+    const cfgRaw  = localStorage.getItem('kfst_config')   || '';
+    const prodRaw = localStorage.getItem('kfst_products') || '';
+
+    if (cfgRaw !== _syncSnapshot.cfg) {
+      _syncSnapshot.cfg = cfgRaw;
+      const cfg = JSON.parse(cfgRaw || '{}');
+      applyCfgLive(cfg);
+      if (cfg.noticeText) flashNotice('관제탑 지시 적용: ' + cfg.noticeText);
+    }
+
+    if (prodRaw !== _syncSnapshot.prod) {
+      _syncSnapshot.prod = prodRaw;
+      const saved = JSON.parse(prodRaw || 'null');
+      applyProductsLive(saved);
+      flashNotice('관제탑 지시: 상품 정보 업데이트 완료!');
+    }
+  } catch (e) { /* silent */ }
+}
+
+/* ── 안테나 ①: BroadcastChannel (같은 브라우저 탭 간 즉시) ── */
+/* → _bc.onmessage 에서 위에 이미 등록 완료 */
+
+/* ── 안테나 ②: storage 이벤트 (다른 브라우저 창 간, Chrome 등) ── */
+window.addEventListener('storage', function(e) {
+  if (e.key === 'kfst_config' || e.key === 'kfst_products') {
+    liveSync();
+  }
+});
+
+/* ── 안테나 ③: 2초 폴링 백업 (file:// 환경, 구형 브라우저 등) ── */
+setInterval(liveSync, 2000);
+
+</script>
+<script>
+/* ===== CONFIG 적용 (config.js 로드 후 즉시 실행) ===== */
+(function applyConfig() {
+  document.getElementById('mall-title-tag').textContent = MALL_CONFIG.mallName + ' | 키친플래그 스탠다드';
+  document.getElementById('logo-text').textContent    = MALL_CONFIG.mallName;
+  document.getElementById('logo-sub').textContent     = MALL_CONFIG.mallSubName;
+  document.getElementById('footer-logo').textContent  = MALL_CONFIG.mallName;
+  document.getElementById('notice-bar').textContent   = MALL_CONFIG.noticeText;
+  document.getElementById('hero-title').innerHTML     = MALL_CONFIG.heroTitle;
+  document.getElementById('hero-desc').innerHTML      = MALL_CONFIG.heroDesc;
+})();
+
+/* ===== RENDER HELPERS ===== */
+function badgeClass(b) {
+  if (b === 'BEST') return 'badge-best';
+  if (b === 'NEW')  return 'badge-new';
+  return 'badge-custom';
+}
+
+function discountPct(p) {
+  if (!p.originalPrice || p.originalPrice <= p.price) return 0;
+  return Math.round((p.originalPrice - p.price) / p.originalPrice * 100);
+}
+
+function makeCard(p) {
+  /* ① 관리자 업로드 Base64 우선 ② 로컬 폴더 썸네일 ③ 플레이스홀더 */
+  const fallback = `https://placehold.co/400x400/EBF6FC/2A7FA5?text=${encodeURIComponent(p.shortName || p.name)}`;
+  const thumbSrc = p.thumbDataUrl
+    ? p.thumbDataUrl
+    : (p.folder && p.thumbFiles && p.thumbFiles.length
+        ? localThumb(p.folder, p.thumbFiles[0])
+        : fallback);
+  const pct = discountPct(p);
+  const div = document.createElement('div');
+  div.className = 'product-card';
+  div.innerHTML = `
+    <div class="card-img">
+      ${p.badge ? `<div class="card-badge ${badgeClass(p.badge)}">${p.badge}</div>` : ''}
+      <img src="${thumbSrc}" onerror="this.onerror=null;this.src='${fallback}'" alt="${p.name}" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-cat">${p.category}</div>
+      <div class="card-name">${p.name}</div>
+      <div class="card-footer">
+        <div>
+          ${pct ? `<div style="display:flex;align-items:center;gap:5px;margin-bottom:2px;"><span class="card-discount">${pct}%↓</span><span class="card-original-price">${p.originalPrice.toLocaleString()}원</span></div>` : ''}
+          <div class="card-price">${p.price.toLocaleString()}<small>원</small></div>
+        </div>
+        <button class="card-cart-btn" onclick="event.stopPropagation();addToCart(products.find(x=>x.id===${p.id}))" title="장바구니 담기">+</button>
+      </div>
+    </div>`;
+  div.addEventListener('click', () => openProduct(p.id));
+  return div;
+}
+
+function renderGrid() {
+  const g = document.getElementById('product-grid');
+  g.innerHTML = '';
+  products.filter(p => p.displayed).forEach(p => g.appendChild(makeCard(p)));
+}
+
+function renderSlider() {
+  // MD픽 4열 그리드 렌더
+  const grid = document.getElementById('md-pick-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  // 표시 상품 중 앞 4개만
+  const picks = products.filter(p => p.displayed).slice(0, 4);
+  picks.forEach(p => grid.appendChild(makeCard(p)));
+}
+
+renderGrid();
+renderSlider();
+
+/* ===== SLIDER (4-up) ===== */
+let sliderPos = 0;
+const SLIDE_W = () => {
+  const track = document.getElementById('slider-track');
+  if (!track.children.length) return 284;
+  return track.children[0].offsetWidth + 20;
+};
+function slideMove(dir) {
+  const track = document.getElementById('slider-track');
+  const maxPos = Math.max(0, track.children.length - 4);
+  sliderPos = Math.max(0, Math.min(sliderPos + dir, maxPos));
+  track.style.transform = `translateX(-${sliderPos * SLIDE_W()}px)`;
+}
+
+/* ===== PRODUCT MODAL ===== */
+let curProduct = null;
+let selOption  = null;
+let detailOpen = false;
+
+function openProduct(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  curProduct = p; selOption = null; detailOpen = false;
+
+  document.getElementById('m-title').textContent = p.shortName;
+  document.getElementById('m-cat').textContent   = p.category;
+  document.getElementById('m-name').textContent  = p.name;
+  document.getElementById('m-price').textContent = p.price.toLocaleString();
+
+  const pct = discountPct(p);
+  const dw  = document.getElementById('m-discount-wrap');
+  if (pct > 0) {
+    document.getElementById('m-discount-pct').textContent      = pct + '% 할인';
+    document.getElementById('m-original-price').textContent    = p.originalPrice.toLocaleString() + '원';
+    dw.style.display = 'flex';
+  } else { dw.style.display = 'none'; }
+  document.getElementById('qty-input').value = 1;
+
+  /* Gallery — admin 업로드(Base64) 우선, 없으면 로컬 폴더 경로 */
+  const fallbackSrc = `https://placehold.co/500x500/EBF6FC/2A7FA5?text=${encodeURIComponent(p.shortName||p.name)}`;
+  const mainImg = document.getElementById('m-main-img');
+  mainImg.src = p.thumbDataUrl
+    ? p.thumbDataUrl
+    : (p.folder && p.thumbFiles && p.thumbFiles.length
+        ? localThumb(p.folder, p.thumbFiles[0])
+        : fallbackSrc);
+  mainImg.onerror = function() { this.onerror=null; this.src=fallbackSrc; };
+
+  const thumbsWrap = document.getElementById('m-thumbs');
+  thumbsWrap.innerHTML = '';
+
+  /* 관리자 업로드 상품: thumbDataUrl 1장을 썸네일로 표시 */
+  if (p.thumbDataUrl && (!p.thumbFiles || !p.thumbFiles.length)) {
+    const img = document.createElement('img');
+    img.src = p.thumbDataUrl;
+    img.classList.add('active');
+    thumbsWrap.appendChild(img);
+  } else {
+    (p.thumbFiles || []).forEach((f, i) => {
+      const img = document.createElement('img');
+      img.src = localThumb(p.folder, f);
+      img.alt = p.shortName + ' ' + (i+1);
+      img.onerror = function() { this.onerror=null; this.style.display='none'; };
+      if (i === 0) img.classList.add('active');
+      img.addEventListener('click', () => {
+        mainImg.src = img.src;
+        thumbsWrap.querySelectorAll('img').forEach(x => x.classList.remove('active'));
+        img.classList.add('active');
+      });
+      thumbsWrap.appendChild(img);
+    });
+  }
+
+  /* Options */
+  const optSec  = document.getElementById('m-opt-section');
+  const optBtns = document.getElementById('m-opt-btns');
+  if (p.hasOption && p.options) {
+    optSec.style.display = '';
+    optBtns.innerHTML = '';
+    p.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className   = 'opt-btn';
+      btn.textContent = opt;
+      btn.addEventListener('click', () => {
+        optBtns.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selOption = opt;
+      });
+      optBtns.appendChild(btn);
+    });
+  } else { optSec.style.display = 'none'; }
+
+  /* Detail section */
+  const ds = document.getElementById('detail-section');
+  ds.classList.remove('open');
+  document.getElementById('detail-imgs').innerHTML    = '';
+  document.getElementById('m-detail-btn').textContent = '상세 보기 ↓';
+
+  document.getElementById('m-order-btn').onclick = () => {
+    if (p.hasOption && !selOption) { alert('색상 옵션을 선택해주세요.'); return; }
+    addToCart(p, selOption); closeDetail(); openCart();
+  };
+
+  document.getElementById('m-detail-btn').onclick = () => {
+    detailOpen = !detailOpen;
+    if (detailOpen) {
+      ds.classList.add('open');
+      const wrap = document.getElementById('detail-imgs');
+      if (!wrap.children.length) {
+        p.detailImgs.forEach(src => {
+          const img = document.createElement('img');
+          img.src = src; img.loading = 'lazy';
+          img.onerror = function() { this.style.display='none'; };
+          wrap.appendChild(img);
+        });
+      }
+      document.getElementById('m-detail-btn').textContent = '상세 닫기 ↑';
+    } else {
+      ds.classList.remove('open');
+      document.getElementById('m-detail-btn').textContent = '상세 보기 ↓';
+    }
+  };
+
+  document.getElementById('detailOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail() {
+  document.getElementById('detailOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('detailOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeDetail();
+});
+
+/* ===== QTY ===== */
+function changeQty(d) {
+  const i = document.getElementById('qty-input');
+  i.value = Math.max(1, Math.min(99, parseInt(i.value||1) + d));
+}
+
+/* ===== ORDER ===== */
+function openOrderModal(product, option) {
+  const qty   = parseInt(document.getElementById('qty-input').value || 1);
+  const total = product ? product.price * qty : 0;
+  document.getElementById('o-product').value = product
+    ? (product.name + (option ? ` [${option}]` : '') + (qty > 1 ? ` ×${qty}` : ''))
+    : '';
+  document.getElementById('o-total').textContent = total ? total.toLocaleString() + '원' : '—';
+  ['o-buyer','o-phone','o-addr','o-note'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('orderOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOrder() {
+  document.getElementById('orderOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('orderOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeOrder();
+});
+
+function submitOrder() {
+  const buyer = document.getElementById('o-buyer').value.trim();
+  const phone = document.getElementById('o-phone').value.trim();
+  const addr  = document.getElementById('o-addr').value.trim();
+  if (!buyer || !phone || !addr) { alert('이름, 연락처, 주소를 모두 입력해주세요.'); return; }
+  const orders = JSON.parse(localStorage.getItem('kfst_orders') || '[]');
+  orders.push({
+    id: Date.now(), date: new Date().toISOString(),
+    product: document.getElementById('o-product').value,
+    buyer, phone, address: addr,
+    note: document.getElementById('o-note').value,
+    total: document.getElementById('o-total').textContent,
+    status: '입금대기',
+  });
+  localStorage.setItem('kfst_orders', JSON.stringify(orders));
+  closeOrder();
+  document.getElementById('successOverlay').classList.add('active');
+}
+
+/* ===== SCROLL TOP ===== */
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 400);
+});
+
+/* ===== CART SYSTEM ===== */
+let cart = JSON.parse(localStorage.getItem('kfst_cart') || '[]');
+
+function saveCart() {
+  localStorage.setItem('kfst_cart', JSON.stringify(cart));
+  updateCartUI();
+}
+
+function addToCart(product, option) {
+  if (!product) return;
+  const key      = product.id + (option ? '_' + option : '');
+  const existing = cart.find(x => x.key === key);
+  if (existing) {
+    existing.qty = Math.min(existing.qty + 1, 99);
+  } else {
+    cart.push({
+      key, id: product.id,
+      name: product.name, shortName: product.shortName,
+      price: product.price, option: option || null,
+      thumb:    localThumb(product.folder, product.thumbFiles[0]),
+      fallback: `https://placehold.co/64x64/EBF6FC/2A7FA5?text=${encodeURIComponent(product.shortName)}`,
+      qty: 1,
+    });
+  }
+  saveCart();
+  const badge = document.getElementById('cart-badge');
+  badge.style.transform = 'scale(1.4)';
+  setTimeout(() => badge.style.transform = '', 300);
+}
+
+function removeFromCart(key) {
+  cart = cart.filter(x => x.key !== key);
+  saveCart(); renderCartItems();
+}
+
+function updateCartQty(key, delta) {
+  const item = cart.find(x => x.key === key);
+  if (!item) return;
+  item.qty = Math.max(1, Math.min(99, item.qty + delta));
+  saveCart(); renderCartItems();
+}
+
+function updateCartUI() {
+  const total = cart.reduce((s, x) => s + x.qty, 0);
+  const badge = document.getElementById('cart-badge');
+  badge.textContent = total;
+  badge.classList.toggle('show', total > 0);
+  document.getElementById('cart-count-label').textContent = total > 0 ? `(${total}개)` : '';
+}
+
+function renderCartItems() {
+  const wrap   = document.getElementById('cart-items');
+  const empty  = document.getElementById('cart-empty');
+  const footer = document.getElementById('cart-footer');
+  wrap.innerHTML = '';
+  if (!cart.length) { empty.style.display = 'block'; footer.style.display = 'none'; return; }
+  empty.style.display = 'none'; footer.style.display = 'block';
+  cart.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <img class="cart-item-img" src="${item.thumb}" onerror="this.onerror=null;this.src='${item.fallback}'" alt="">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.shortName || item.name}</div>
+        ${item.option ? `<div class="cart-item-opt">옵션: ${item.option}</div>` : ''}
+        <div class="cart-item-row">
+          <span class="cart-item-price">${(item.price * item.qty).toLocaleString()}원</span>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <div class="cart-qty-row">
+              <button class="cart-qty-btn" onclick="updateCartQty('${item.key}', -1)">−</button>
+              <input class="cart-qty-val" type="number" value="${item.qty}" min="1" max="99"
+                onchange="cart.find(x=>x.key==='${item.key}').qty=Math.max(1,Math.min(99,+this.value));saveCart();renderCartItems();">
+              <button class="cart-qty-btn" onclick="updateCartQty('${item.key}', 1)">+</button>
+            </div>
+            <button class="cart-item-remove" onclick="removeFromCart('${item.key}')">✕</button>
+          </div>
+        </div>
+      </div>`;
+    wrap.appendChild(div);
+  });
+  const grandTotal = cart.reduce((s, x) => s + x.price * x.qty, 0);
+  document.getElementById('cart-total').textContent = grandTotal.toLocaleString() + '원';
+}
+
+function openCart() {
+  renderCartItems();
+  document.getElementById('cart-drawer').classList.add('open');
+  document.getElementById('cart-backdrop').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('cart-backdrop').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function checkoutFromCart() {
+  if (!cart.length) return;
+  const productStr = cart.map(x => `${x.shortName}${x.option?' ['+x.option+']':''} ×${x.qty}`).join(' / ');
+  const total      = cart.reduce((s, x) => s + x.price * x.qty, 0);
+  closeCart();
+  document.getElementById('o-product').value         = productStr;
+  document.getElementById('o-total').textContent     = total.toLocaleString() + '원';
+  ['o-buyer','o-phone','o-addr','o-note'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('orderOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+/* init */
+updateCartUI();
+</script>
+</body>
+</html>

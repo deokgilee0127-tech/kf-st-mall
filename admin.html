@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KF_St 관리자 센터</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   KF_St ADMIN — WHITE + PASTEL DESIGN
+   ============================================================ */
+:root {
+  --primary:      #2A7FA5;
+  --primary-lt:   #4AABCF;
+  --primary-pale: #EBF6FC;
+  --mint:         #3CBFB0;
+  --mint-pale:    #E6F7F5;
+  --rose:         #E8708A;
+  --rose-hover:   #CD5E77;
+  --rose-pale:    #FDF0F3;
+  --gold:         #F5A623;
+  --gold-pale:    #FFF8EC;
+  --success:      #22C55E;
+  --success-pale: #F0FDF4;
+  --warn:         #F59E0B;
+  --danger:       #EF4444;
+
+  --white:        #FFFFFF;
+  --bg:           #F5F8FB;
+  --card:         #FFFFFF;
+  --sidebar-bg:   #1E2A3A;
+  --sidebar-text: rgba(255,255,255,.7);
+  --sidebar-muted: rgba(255,255,255,.35);
+  --border:       #DDE8F2;
+  --border-lt:    #EEF4FA;
+  --text-1:       #1A2636;
+  --text-2:       #546A82;
+  --text-3:       #94ABBE;
+  --shadow-sm:    0 1px 4px rgba(42,127,165,.07);
+  --shadow-md:    0 4px 16px rgba(42,127,165,.10);
+  --shadow-lg:    0 8px 32px rgba(42,127,165,.14);
+  --radius:       12px;
+  --tr:           .22s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text-1);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.sidebar {
+  width: 236px;
+  background: var(--sidebar-bg);
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  box-shadow: 4px 0 20px rgba(0,0,0,.12);
+}
+
+.sidebar-brand {
+  padding: 22px 18px 18px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.brand-logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -.5px;
+}
+
+.brand-sub {
+  font-size: 9px;
+  color: var(--sidebar-muted);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.sidebar-nav { flex: 1; overflow-y: auto; padding: 14px 10px; }
+
+.nav-group { margin-bottom: 22px; }
+
+.nav-group-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--sidebar-muted);
+  text-transform: uppercase;
+  padding: 0 8px;
+  margin-bottom: 6px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--sidebar-text);
+  cursor: pointer;
+  transition: all var(--tr);
+  margin-bottom: 1px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.nav-link:hover { background: rgba(255,255,255,.07); color: #fff; }
+.nav-link.active {
+  background: rgba(42,127,165,.25);
+  border-color: rgba(42,127,165,.35);
+  color: #7DD3F0;
+  font-weight: 700;
+}
+
+.nav-icon { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
+
+.sidebar-footer {
+  padding: 14px 18px;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+.sidebar-footer a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--sidebar-muted);
+  text-decoration: none;
+  padding: 7px 0;
+  transition: color var(--tr);
+}
+.sidebar-footer a:hover { color: #7DD3F0; }
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+.main {
+  margin-left: 236px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* TOPBAR */
+.topbar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  height: 58px;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-sm);
+}
+.topbar-title { font-size: 15px; font-weight: 700; color: var(--text-1); }
+.topbar-right { display: flex; align-items: center; gap: 14px; }
+.topbar-date { font-size: 12px; color: var(--text-3); }
+.admin-badge {
+  background: var(--primary-pale);
+  color: var(--primary);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+}
+
+/* CONTENT */
+.content { padding: 28px; flex: 1; }
+.page-panel { display: none; }
+.page-panel.active { display: block; }
+
+/* ============================================================
+   CARD
+   ============================================================ */
+.card {
+  background: var(--card);
+  border: 1.5px solid var(--border-lt);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-hd {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.card-hd .label { display: flex; align-items: center; gap: 8px; }
+
+/* ============================================================
+   KPI
+   ============================================================ */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.kpi-item {
+  background: var(--card);
+  border: 1.5px solid var(--border-lt);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--tr), box-shadow var(--tr);
+}
+.kpi-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.kpi-item::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+}
+.kpi-item.k-sales::before { background: var(--rose); }
+.kpi-item.k-cost::before  { background: var(--primary-lt); }
+.kpi-item.k-margin::before { background: var(--success); }
+.kpi-item.k-rate::before  { background: var(--gold); }
+
+.kpi-label { font-size: 11px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.kpi-value { font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 900; margin-bottom: 6px; }
+.kpi-item.k-sales  .kpi-value { color: var(--rose); }
+.kpi-item.k-cost   .kpi-value { color: var(--primary); }
+.kpi-item.k-margin .kpi-value { color: var(--success); }
+.kpi-item.k-rate   .kpi-value { color: var(--gold); }
+.kpi-sub { font-size: 11px; color: var(--text-3); }
+
+/* ============================================================
+   CHART
+   ============================================================ */
+.chart-area {
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  border-bottom: 1.5px solid var(--border-lt);
+  padding-bottom: 0;
+}
+.bar-grp {
+  flex: 1;
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+  height: 100%;
+  justify-content: center;
+}
+.bar {
+  flex: 1;
+  max-width: 18px;
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  position: relative;
+  transition: opacity var(--tr);
+}
+.bar:hover { opacity: .8; }
+.bar:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: 100%; left: 50%; transform: translateX(-50%);
+  background: var(--text-1);
+  color: #fff;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  white-space: nowrap;
+  margin-bottom: 5px;
+  pointer-events: none;
+}
+.bar.sales { background: linear-gradient(to top, var(--rose), #F4A0B5); }
+.bar.margin { background: linear-gradient(to top, var(--success), #6EE7B7); }
+.bar-date { font-size: 9px; color: var(--text-3); text-align: center; margin-top: 6px; }
+
+.chart-labels {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+.chart-label-grp { flex: 1; text-align: center; }
+.chart-legend { display: flex; gap: 18px; margin-top: 14px; }
+.legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+.legend-item { font-size: 12px; color: var(--text-2); }
+
+/* ============================================================
+   TABLE
+   ============================================================ */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.data-table th {
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  border-bottom: 1.5px solid var(--border-lt);
+  background: var(--bg);
+}
+.data-table td {
+  padding: 12px 12px;
+  border-bottom: 1px solid var(--border-lt);
+  color: var(--text-1);
+  vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--primary-pale); }
+.data-table tfoot td { background: var(--primary-pale); font-weight: 700; border-top: 1.5px solid var(--border); }
+
+.num-col { font-family: 'Outfit', sans-serif; font-weight: 700; }
+.pos { color: var(--success); }
+.neg { color: var(--danger); }
+
+/* TOGGLE */
+.toggle { position: relative; display: inline-block; width: 40px; height: 22px; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute; inset: 0;
+  background: var(--border);
+  border-radius: 22px;
+  cursor: pointer;
+  transition: background var(--tr);
+}
+.toggle input:checked + .toggle-slider { background: var(--success); }
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 16px; width: 16px;
+  left: 3px; bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform var(--tr);
+  box-shadow: 0 1px 3px rgba(0,0,0,.1);
+}
+.toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
+
+/* BADGE */
+.tbl-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 100px;
+}
+.tb-best  { background: #FFF8EC; color: var(--gold); border: 1px solid #F5D99B; }
+.tb-new   { background: var(--mint-pale); color: var(--mint); border: 1px solid #A5DDD9; }
+.tb-none  { background: var(--bg); color: var(--text-3); border: 1px solid var(--border); }
+
+/* STATUS */
+.status-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 100px; }
+.st-wait   { background: #FFF8EC; color: var(--gold); border: 1px solid #F5D99B; }
+.st-done   { background: var(--success-pale); color: var(--success); border: 1px solid #A7F3D0; }
+.st-cancel { background: var(--rose-pale); color: var(--rose); border: 1px solid #F9C0CE; }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn { padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; border: none; cursor: pointer; transition: all var(--tr); font-family: 'Noto Sans KR', sans-serif; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-lt); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(42,127,165,.25); }
+.btn-rose { background: var(--rose); color: #fff; }
+.btn-rose:hover { background: var(--rose-hover); transform: translateY(-1px); }
+.btn-mint { background: var(--mint); color: #fff; }
+.btn-mint:hover { opacity: .88; }
+.btn-ghost { background: var(--white); color: var(--text-2); border: 1.5px solid var(--border); }
+.btn-ghost:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-pale); }
+.btn-sm { padding: 5px 12px; font-size: 12px; border-radius: 6px; }
+
+/* ============================================================
+   FORMS
+   ============================================================ */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-full { grid-column: 1 / -1; }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label { font-size: 11px; font-weight: 700; color: var(--text-2); text-transform: uppercase; letter-spacing: .8px; }
+.form-control {
+  padding: 10px 13px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: var(--text-1);
+  background: var(--white);
+  transition: border-color var(--tr);
+  width: 100%;
+}
+.form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(42,127,165,.08); }
+textarea.form-control { height: 90px; resize: vertical; }
+select.form-control { cursor: pointer; }
+
+/* ============================================================
+   BANK INFO
+   ============================================================ */
+.bank-display {
+  background: linear-gradient(135deg, var(--primary-pale) 0%, var(--mint-pale) 100%);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 22px;
+}
+.bank-title { font-size: 12px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+.bank-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--border-lt); font-size: 13.5px; }
+.bank-row:last-child { border-bottom: none; }
+.bank-lbl { color: var(--text-3); font-size: 12px; }
+.bank-val { font-weight: 700; color: var(--text-1); font-family: 'Outfit', sans-serif; }
+.bank-val.hl { color: var(--primary); font-size: 17px; }
+
+/* ============================================================
+   PRODUCT REGISTRATION — SMART UI
+   ============================================================ */
+.reg-tabs { display: flex; gap: 6px; margin-bottom: 20px; border-bottom: 1.5px solid var(--border-lt); padding-bottom: 0; }
+.reg-tab {
+  padding: 9px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-3);
+  cursor: pointer;
+  border-bottom: 2.5px solid transparent;
+  transition: all var(--tr);
+  margin-bottom: -1.5px;
+}
+.reg-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+.reg-tab-panel { display: none; }
+.reg-tab-panel.active { display: block; }
+
+/* Option rows */
+.option-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border-lt);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.option-row input { flex: 1; padding: 7px 10px; border: 1.5px solid var(--border); border-radius: 6px; font-size: 13px; font-family: 'Noto Sans KR', sans-serif; color: var(--text-1); background: var(--white); }
+.option-row input:focus { outline: none; border-color: var(--primary); }
+.del-opt-btn { background: var(--rose-pale); color: var(--rose); border: 1px solid #F9C0CE; border-radius: 6px; padding: 5px 12px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.del-opt-btn:hover { background: var(--rose); color: #fff; }
+
+/* Upload preview */
+.upload-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: all var(--tr);
+  background: var(--bg);
+}
+.upload-zone:hover { border-color: var(--primary-lt); color: var(--primary); background: var(--primary-pale); }
+.upload-zone.drag { border-color: var(--primary); background: var(--primary-pale); }
+.upload-icon { font-size: 32px; margin-bottom: 10px; }
+.upload-text { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.upload-sub { font-size: 12px; }
+
+.preview-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+.preview-item {
+  position: relative;
+  width: 80px; height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1.5px solid var(--border);
+}
+.preview-item img { width: 100%; height: 100%; object-fit: cover; }
+.preview-item .rm-btn {
+  position: absolute; top: 3px; right: 3px;
+  background: rgba(239,68,68,.85); color: #fff;
+  border: none; width: 20px; height: 20px;
+  border-radius: 50%; font-size: 11px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+
+/* HTML preview pane */
+.html-preview {
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  min-height: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: var(--bg);
+  margin-top: 14px;
+}
+.html-preview img { max-width: 100%; display: block; margin-bottom: 4px; }
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.m-overlay {
+  position: fixed; inset: 0;
+  background: rgba(26,38,54,.45);
+  backdrop-filter: blur(5px);
+  z-index: 800;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.m-overlay.active { display: flex; }
+
+.m-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  animation: rise .28s ease;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(22px) scale(.97); } to { opacity: 1; transform: none; } }
+
+.m-header {
+  padding: 18px 22px;
+  border-bottom: 1.5px solid var(--border-lt);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky; top: 0;
+  background: var(--white);
+  z-index: 1;
+}
+.m-header h3 { font-size: 16px; font-weight: 700; color: var(--text-1); }
+.m-close { background: var(--bg); border: 1.5px solid var(--border); color: var(--text-2); font-size: 16px; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all var(--tr); }
+.m-close:hover { background: var(--rose-pale); color: var(--rose); border-color: var(--rose); }
+
+.m-body { padding: 22px; }
+.m-footer { padding: 16px 22px; border-top: 1.5px solid var(--border-lt); display: flex; gap: 10px; justify-content: flex-end; background: var(--bg); }
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+.toast {
+  position: fixed; bottom: 24px; right: 24px;
+  background: var(--success);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  z-index: 999;
+  transform: translateY(70px);
+  opacity: 0;
+  transition: all .28s ease;
+  box-shadow: var(--shadow-md);
+  max-width: 320px;
+}
+.toast.show { transform: none; opacity: 1; }
+.toast.err { background: var(--danger); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+  .form-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-logo" id="admin-brand">KF_St</div>
+    <div class="brand-sub">Admin Center</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <div class="nav-group-label">대시보드</div>
+      <button class="nav-link active" onclick="showPage('dashboard')"><span class="nav-icon">📊</span>매출 대시보드</button>
+      <button class="nav-link" onclick="showPage('orders')"><span class="nav-icon">📦</span>주문 관리</button>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">상품 관리</div>
+      <button class="nav-link" onclick="showPage('products')"><span class="nav-icon">🛍️</span>상품 목록 / 수정</button>
+      <button class="nav-link" onclick="showPage('register')"><span class="nav-icon">➕</span>스마트 상품 등록</button>
+    </div>
+    <div class="nav-group">
+      <div class="nav-group-label">쇼핑몰 설정</div>
+      <button class="nav-link" onclick="showPage('marketing')"><span class="nav-icon">🎯</span>마케팅 설정</button>
+      <button class="nav-link" onclick="showPage('popup')"><span class="nav-icon">🔔</span>팝업 / 공지</button>
+      <button class="nav-link" onclick="showPage('settings')"><span class="nav-icon">⚙️</span>시스템 설정</button>
+      <button class="nav-link" onclick="showPage('bank')"><span class="nav-icon">🏦</span>입금 계좌 관리</button>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="index.html" target="_blank">🛒 폐쇄몰 열기 →</a>
+    <a href="#" onclick="resetAll()">🗑️ 전체 초기화</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <span class="topbar-title" id="topbar-title">📊 매출 대시보드</span>
+    <div class="topbar-right">
+      <span class="topbar-date" id="topbar-date"></span>
+      <span class="admin-badge">🔐 ADMIN</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ============================================================
+         DASHBOARD
+         ============================================================ -->
+    <div class="page-panel active" id="page-dashboard">
+      <div class="kpi-grid" id="kpi-grid"></div>
+
+      <div class="card">
+        <div class="card-hd">
+          <div class="label">📈 일별 매출 현황 (최근 14일)</div>
+        </div>
+        <div class="chart-area" id="chart-area"></div>
+        <div class="chart-labels" id="chart-labels"></div>
+        <div class="chart-legend">
+          <div class="legend-item"><span class="legend-dot" style="background:var(--rose)"></span>매출</div>
+          <div class="legend-item"><span class="legend-dot" style="background:var(--success)"></span>마진</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd"><div class="label">💰 상품별 수익 분석 (가이드라인 기준)</div></div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead><tr>
+              <th>상품명</th><th>판매가</th><th>매입가</th>
+              <th>마진</th><th>마진율</th><th>배지</th>
+            </tr></thead>
+            <tbody id="profit-tbody"></tbody>
+            <tfoot><tr>
+              <td>합계 / 평균</td>
+              <td class="num-col" id="f-sales"></td>
+              <td class="num-col" id="f-cost"></td>
+              <td class="num-col pos" id="f-margin"></td>
+              <td class="num-col" id="f-rate"></td>
+              <td>—</td>
+            </tr></tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         ORDERS
+         ============================================================ -->
+    <div class="page-panel" id="page-orders">
+      <div class="card">
+        <div class="card-hd">
+          <div class="label">📦 주문 목록</div>
+          <button class="btn btn-ghost btn-sm" onclick="clearOrders()">초기화</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead><tr>
+              <th>일시</th><th>주문자</th><th>상품</th>
+              <th>금액</th><th>상태</th><th>처리</th>
+            </tr></thead>
+            <tbody id="order-tbody"></tbody>
+          </table>
+        </div>
+        <div id="order-empty" style="text-align:center;padding:40px;color:var(--text-3);font-size:14px;">아직 주문이 없습니다.</div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         PRODUCTS LIST
+         ============================================================ -->
+    <div class="page-panel" id="page-products">
+      <div class="card">
+        <div class="card-hd">
+          <div class="label">🛍️ 상품 목록 / 수정</div>
+          <button class="btn btn-primary btn-sm" onclick="saveProductList()">변경사항 저장</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead><tr>
+              <th>진열</th><th>상품명</th><th>판매가</th>
+              <th>매입가</th><th>마진율</th><th>배지</th><th>수정</th>
+            </tr></thead>
+            <tbody id="product-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         SMART PRODUCT REGISTER
+         ============================================================ -->
+    <div class="page-panel" id="page-register">
+      <div class="card">
+        <div class="card-hd"><div class="label">➕ 스마트 상품 등록</div></div>
+
+        <!-- 기본 정보 -->
+        <div class="form-grid" style="margin-bottom:20px;">
+          <div class="form-group form-full">
+            <label class="form-label">상품명 (전체)</label>
+            <input class="form-control" id="r-name" type="text" placeholder="예: 키친플래그 ○○○ 세트">
+          </div>
+          <div class="form-group">
+            <label class="form-label">카테고리</label>
+            <select class="form-control" id="r-cat">
+              <option value="주방용품">주방용품</option>
+              <option value="생활용품">생활용품</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">배지</label>
+            <select class="form-control" id="r-badge">
+              <option value="">없음</option>
+              <option value="BEST">BEST</option>
+              <option value="NEW">NEW</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">판매가 (원)</label>
+            <input class="form-control" id="r-price" type="number" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label">매입가 (원)</label>
+            <input class="form-control" id="r-cost" type="number" placeholder="0">
+          </div>
+        </div>
+
+        <!-- 마진 실시간 계산 -->
+        <div style="background:var(--primary-pale);border:1.5px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:22px;display:flex;gap:24px;flex-wrap:wrap;" id="r-calc-bar">
+          <span style="font-size:13px;color:var(--text-2);">마진: <strong style="color:var(--success);font-family:'Outfit',sans-serif;" id="r-calc-margin">—</strong></span>
+          <span style="font-size:13px;color:var(--text-2);">마진율: <strong style="color:var(--primary);font-family:'Outfit',sans-serif;" id="r-calc-rate">—</strong></span>
+        </div>
+
+        <!-- 옵션 설정 -->
+        <div style="margin-bottom:22px;">
+          <div class="form-label" style="margin-bottom:10px;">옵션 유형</div>
+          <div style="display:flex;gap:12px;margin-bottom:16px;">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--text-2);">
+              <input type="radio" name="r-opt-type" value="single" checked onchange="toggleOptUI(this.value)" style="accent-color:var(--primary);width:16px;height:16px;">
+              단일 상품 (옵션 없음)
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--text-2);">
+              <input type="radio" name="r-opt-type" value="option" onchange="toggleOptUI(this.value)" style="accent-color:var(--primary);width:16px;height:16px;">
+              옵션 상품 (색상/사이즈 등)
+            </label>
+          </div>
+          <div id="r-opt-area" style="display:none;">
+            <div id="r-opt-rows"></div>
+            <button class="btn btn-ghost btn-sm" onclick="addOptionRow()" style="margin-top:6px;">＋ 옵션 추가</button>
+          </div>
+        </div>
+
+        <!-- 🖼️ 썸네일 등록 -->
+        <div style="margin-bottom:26px;">
+          <div class="form-label" style="margin-bottom:12px;">🖼️ 썸네일 이미지 <span style="font-size:11px;font-weight:400;color:var(--text-3);">(카드 대표 이미지 · 1장)</span></div>
+
+          <!-- 썸네일 업로드 존 -->
+          <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;">
+            <div id="thumb-upload-zone"
+                 onclick="document.getElementById('r-thumb-input').click()"
+                 ondragover="event.preventDefault();this.classList.add('drag')"
+                 ondragleave="this.classList.remove('drag')"
+                 ondrop="handleThumbDrop(event)"
+                 style="flex:0 0 140px;height:140px;border:2px dashed var(--border);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;background:var(--bg);gap:6px;">
+              <div style="font-size:28px;">🖼️</div>
+              <div style="font-size:11.5px;color:var(--text-3);text-align:center;line-height:1.4;">클릭 또는<br>드래그 업로드</div>
+            </div>
+            <input type="file" id="r-thumb-input" accept="image/*" style="display:none" onchange="handleThumbInput(this.files[0])">
+
+            <!-- 썸네일 미리보기 -->
+            <div id="thumb-preview-wrap" style="display:none;position:relative;flex:0 0 140px;">
+              <img id="thumb-preview-img"
+                   style="width:140px;height:140px;object-fit:cover;border-radius:12px;border:2px solid var(--primary-lt);display:block;"
+                   src="" alt="썸네일 미리보기">
+              <button onclick="clearThumb()"
+                      style="position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:50%;background:var(--rose);color:#fff;border:none;cursor:pointer;font-size:12px;line-height:24px;text-align:center;" title="삭제">✕</button>
+              <div style="margin-top:6px;font-size:11px;color:var(--success);font-weight:600;text-align:center;">✅ 썸네일 등록됨</div>
+            </div>
+
+            <!-- 안내 텍스트 -->
+            <div style="flex:1;min-width:160px;padding-top:4px;">
+              <div style="font-size:12px;color:var(--text-3);line-height:1.8;">
+                • JPG / PNG / WEBP / GIF 지원<br>
+                • 정방형(1:1) 이미지 권장<br>
+                • 상품 카드 및 상세 모달에 표시됨<br>
+                • 미등록 시 플레이스홀더 자동 적용
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 📄 상세페이지 등록 -->
+        <div class="form-label" style="margin-bottom:12px;">📄 상세페이지 등록</div>
+        <div class="reg-tabs">
+          <div class="reg-tab active" onclick="switchDetailTab('upload', this)">🖼️ 이미지 업로드</div>
+          <div class="reg-tab" onclick="switchDetailTab('html', this)">🔤 HTML 소스 붙여넣기</div>
+        </div>
+
+        <!-- 이미지 업로드 탭 -->
+        <div class="reg-tab-panel active" id="rtp-upload">
+          <div class="upload-zone" id="upload-zone"
+               onclick="document.getElementById('r-file-input').click()"
+               ondragover="event.preventDefault();this.classList.add('drag')"
+               ondragleave="this.classList.remove('drag')"
+               ondrop="handleDetailDrop(event)">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">클릭 또는 드래그하여 상세 이미지 업로드</div>
+            <div class="upload-sub">JPG, PNG, GIF, WEBP 지원 · 여러 파일 선택 가능</div>
+          </div>
+          <input type="file" id="r-file-input" accept="image/*" multiple style="display:none" onchange="handleFileInput(this.files)">
+          <div class="preview-list" id="preview-list"></div>
+          <div style="margin-top:12px;font-size:12px;color:var(--text-3);">
+            * 드래그로 순서 변경 가능.
+          </div>
+        </div>
+
+        <!-- HTML 소스 탭 -->
+        <div class="reg-tab-panel" id="rtp-html">
+          <div class="form-group" style="margin-top:4px;">
+            <label class="form-label">HTML 코드 붙여넣기</label>
+            <textarea class="form-control" id="r-html-code" style="height:180px;font-family:monospace;font-size:12px;"
+              placeholder="&lt;img src='https://...' /&gt;&#10;&lt;img src='https://...' /&gt;"
+              oninput="renderHtmlPreview()"></textarea>
+          </div>
+          <div class="form-label" style="margin:12px 0 6px;">미리보기</div>
+          <div class="html-preview" id="r-html-preview">
+            <span style="font-size:12px;color:var(--text-3);">HTML 코드를 입력하면 여기에 미리보기가 표시됩니다.</span>
+          </div>
+        </div>
+
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+          <button class="btn btn-rose" onclick="registerProduct()">상품 등록</button>
+          <button class="btn btn-ghost" onclick="resetRegForm()">초기화</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         MARKETING
+         ============================================================ -->
+    <div class="page-panel" id="page-marketing">
+      <div class="card">
+        <div class="card-hd"><div class="label">⚡ [이달의 공격수] 설정</div></div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">공격수 상품 선택</label>
+            <select class="form-control" id="attacker-product">
+              <option value="6">타포린백 분리수거함 3단 세트</option>
+              <option value="5">오일스프레이 4p SET</option>
+              <option value="2">스테인레스 304 냄비 3종 세트</option>
+              <option value="1">블랙 시그니처 칼가위 6종 세트</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">공격수 홍보 문구</label>
+            <textarea class="form-control" id="attacker-desc">트렌디한 타포린 소재로 만든 분리수거함. 접이식 3단 구성으로 공간 효율 극대화.</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-hd"><div class="label">📢 헤더 공지 배너</div></div>
+        <div class="form-group form-full">
+          <label class="form-label">공지 텍스트</label>
+          <input class="form-control" id="notice-text" value="🔒 키친플래그 임직원 전용 폐쇄몰 · 외부 공유 금지">
+        </div>
+        <div style="margin-top:16px;">
+          <button class="btn btn-primary" onclick="saveMarketingConfig()">저장</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         POPUP
+         ============================================================ -->
+    <div class="page-panel" id="page-popup">
+      <div class="card">
+        <div class="card-hd"><div class="label">🔔 팝업 / 공지 설정</div></div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">팝업 활성화</label>
+            <label class="toggle" style="margin-top:4px;">
+              <input type="checkbox" id="popup-active">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="form-label">팝업 제목</label>
+            <input class="form-control" id="popup-title" placeholder="팝업 제목">
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">팝업 내용</label>
+            <textarea class="form-control" id="popup-content" style="height:120px;" placeholder="팝업 내용을 입력하세요..." oninput="document.getElementById('popup-preview').textContent=this.value"></textarea>
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">미리보기</label>
+            <div style="background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:14px;min-height:60px;font-size:13px;color:var(--text-2);white-space:pre-wrap;" id="popup-preview"></div>
+          </div>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:10px;">
+          <button class="btn btn-primary" onclick="savePopupConfig()">저장</button>
+          <button class="btn btn-ghost" onclick="previewPopup()">팝업 미리보기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         SETTINGS
+         ============================================================ -->
+    <div class="page-panel" id="page-settings">
+      <div class="card">
+        <div class="card-hd"><div class="label">🏪 쇼핑몰 기본 정보</div></div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">몰 명칭 (로고에 표시)</label>
+            <input class="form-control" id="s-mall-name" placeholder="KF_St">
+          </div>
+          <div class="form-group">
+            <label class="form-label">서브 명칭</label>
+            <input class="form-control" id="s-mall-sub" placeholder="KitchenFlag Standard">
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">히어로 타이틀 (HTML 가능)</label>
+            <input class="form-control" id="s-hero-title" placeholder="주방의 기준을&lt;br&gt;&lt;em&gt;새로&lt;/em&gt; …">
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">히어로 서브 텍스트</label>
+            <textarea class="form-control" id="s-hero-desc"></textarea>
+          </div>
+        </div>
+        <div style="margin-top:18px;display:flex;gap:10px;">
+          <button class="btn btn-primary" onclick="saveMallSettings()">저장 및 반영</button>
+          <button class="btn btn-ghost" onclick="loadSettingsForm()">초기값 복원</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         BANK
+         ============================================================ -->
+    <div class="page-panel" id="page-bank">
+      <div class="card">
+        <div class="card-hd"><div class="label">🏦 입금 계좌 정보 (통장사본 기준)</div></div>
+        <div class="bank-display">
+          <div class="bank-title">🏦 IBK 중소기업은행</div>
+          <div class="bank-row"><span class="bank-lbl">계좌번호</span><span class="bank-val hl">337-066891-01-010</span></div>
+          <div class="bank-row"><span class="bank-lbl">예금주</span><span class="bank-val">이덕기</span></div>
+          <div class="bank-row"><span class="bank-lbl">평생계좌</span><span class="bank-val">010-9583-2927</span></div>
+          <div class="bank-row"><span class="bank-lbl">예금종류</span><span class="bank-val">IBK 급여통장</span></div>
+          <div class="bank-row"><span class="bank-lbl">IBK 고객센터</span><span class="bank-val">1566-2566 (1588-2588)</span></div>
+          <div class="bank-row"><span class="bank-lbl">계좌관리점</span><span class="bank-val">무역센터 02-538-8377</span></div>
+        </div>
+
+        <div class="card-hd" style="margin-top:4px;"><div class="label">✏️ 계좌 정보 수정</div></div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">은행명</label>
+            <input class="form-control" id="b-bank" value="IBK 중소기업은행">
+          </div>
+          <div class="form-group">
+            <label class="form-label">계좌번호</label>
+            <input class="form-control" id="b-account" value="337-066891-01-010">
+          </div>
+          <div class="form-group">
+            <label class="form-label">예금주</label>
+            <input class="form-control" id="b-owner" value="이덕기">
+          </div>
+          <div class="form-group">
+            <label class="form-label">연락처</label>
+            <input class="form-control" id="b-phone" value="010-9583-2927">
+          </div>
+        </div>
+        <div style="margin-top:16px;">
+          <button class="btn btn-primary" onclick="saveBankConfig()">저장</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- PRODUCT EDIT MODAL -->
+<div class="m-overlay" id="editModal">
+  <div class="m-box" style="max-width:520px;">
+    <div class="m-header">
+      <h3>상품 수정</h3>
+      <button class="m-close" onclick="closeEditModal()">✕</button>
+    </div>
+    <div class="m-body">
+      <input type="hidden" id="e-id">
+      <div class="form-grid">
+        <div class="form-group form-full">
+          <label class="form-label">상품명</label>
+          <input class="form-control" id="e-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">판매가 (원)</label>
+          <input class="form-control" id="e-price" type="number">
+        </div>
+        <div class="form-group">
+          <label class="form-label">매입가 (원)</label>
+          <input class="form-control" id="e-cost" type="number">
+        </div>
+        <div class="form-group">
+          <label class="form-label">배지</label>
+          <select class="form-control" id="e-badge">
+            <option value="">없음</option>
+            <option value="BEST">BEST</option>
+            <option value="NEW">NEW</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">진열 상태</label>
+          <select class="form-control" id="e-displayed">
+            <option value="true">진열</option>
+            <option value="false">미진열</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="m-footer">
+      <button class="btn btn-ghost" onclick="closeEditModal()">취소</button>
+      <button class="btn btn-primary" onclick="saveEdit()">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP PREVIEW MODAL -->
+<div class="m-overlay" id="popupPrevModal">
+  <div class="m-box" style="max-width:380px;text-align:center;">
+    <div class="m-header" style="background:var(--primary);">
+      <h3 id="ppv-title" style="color:#fff;">공지사항</h3>
+      <button class="m-close" style="background:rgba(255,255,255,.15);color:#fff;border-color:transparent;" onclick="document.getElementById('popupPrevModal').classList.remove('active')">✕</button>
+    </div>
+    <div class="m-body" style="padding:28px;">
+      <div id="ppv-content" style="font-size:14px;line-height:1.8;color:var(--text-2);"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== DATA ===== */
+const PRODUCTS_DEFAULT = [
+  { id:0, name:'키친플래그 극세사 행주 5개입 세트',          shortName:'극세사 행주 5개입',    category:'주방', price:5300,  cost:5200,  badge:'BEST', displayed:true },
+  { id:1, name:'키친플래그 블랙 시그니처 칼가위 6종 세트',   shortName:'칼가위 6종 세트',     category:'주방', price:12900, cost:11500, badge:'NEW',  displayed:true },
+  { id:2, name:'키친플래그 스테인레스 304 냄비 3종 세트',    shortName:'냄비 3종 세트',       category:'주방', price:29900, cost:26000, badge:'BEST', displayed:true },
+  { id:3, name:'키친플래그 스테인레스304 밀폐찬통 8p 세트',  shortName:'밀폐찬통 8p',         category:'주방', price:13900, cost:14200, badge:'',     displayed:true },
+  { id:4, name:'키친플래그 스테인레스304 슬라이드 채반',     shortName:'슬라이드 채반',       category:'주방', price:10900, cost:11000, badge:'',     displayed:true },
+  { id:5, name:'키친플래그 오일스프레이 4p SET',             shortName:'오일스프레이 4p',     category:'주방', price:12900, cost:9700,  badge:'BEST', displayed:true },
+  { id:6, name:'키친플래그 타포린백 분리수거함 3단 세트',    shortName:'타포린백 분리수거함', category:'생활', price:15900, cost:8900,  badge:'BEST', displayed:true },
+  { id:7, name:'키친플래그 홈 소프트 데일리 미니타월 2p 세트', shortName:'미니타월 2p',       category:'생활', price:8900,  cost:8600,  badge:'NEW',  displayed:true },
+];
+
+let products = JSON.parse(JSON.stringify(PRODUCTS_DEFAULT));
+const savedProds = JSON.parse(localStorage.getItem('kfst_products') || 'null');
+if (savedProds) {
+  savedProds.forEach(sp => {
+    const p = products.find(x => x.id === sp.id);
+    if (p) {
+      Object.assign(p, sp); /* 기존 상품 업데이트 */
+    } else {
+      /* 신규 등록 상품(Date.now() ID) — 목록에 추가 */
+      products.push(Object.assign({
+        shortName: sp.name, category: '주방',
+        folder: '', thumbFiles: [], detailImgs: [],
+        hasOption: false, displayed: true,
+      }, sp));
+    }
+  });
+}
+
+let MALL_CONFIG = JSON.parse(localStorage.getItem('kfst_config') || 'null') || {
+  mallName: 'KF_St', mallSubName: 'KitchenFlag Standard',
+  heroTitle: '주방의 기준을<br><em>새로</em> <span>씁니다</span>',
+  heroDesc: '키친플래그가 직접 기획한 8종의 프리미엄 PB 상품.<br>임직원 전용 특가로 지금 만나보세요.',
+  noticeText: '🔒 키친플래그 임직원 전용 폐쇄몰 · 외부 공유 금지',
+};
+
+/* ===== INIT ===== */
+document.addEventListener('DOMContentLoaded', () => {
+  updateDate();
+  renderKPI();
+  renderChart();
+  renderProfitTable();
+  renderProductList();
+  renderOrders();
+  loadSettingsForm();
+  document.getElementById('admin-brand').textContent = MALL_CONFIG.mallName;
+  setInterval(updateDate, 60000);
+  initRealTimeCalc();
+});
+
+function updateDate() {
+  document.getElementById('topbar-date').textContent =
+    new Date().toLocaleDateString('ko-KR', { year:'numeric', month:'long', day:'numeric', weekday:'short' });
+}
+
+/* ===== NAV ===== */
+const PAGE_TITLES = {
+  dashboard:'📊 매출 대시보드', orders:'📦 주문 관리',
+  products:'🛍️ 상품 목록 / 수정', register:'➕ 스마트 상품 등록',
+  marketing:'🎯 마케팅 설정', popup:'🔔 팝업 / 공지',
+  settings:'⚙️ 시스템 설정', bank:'🏦 입금 계좌 관리',
+};
+
+function showPage(id) {
+  document.querySelectorAll('.page-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(n => {
+    if (n.textContent.trim().includes(PAGE_TITLES[id].slice(2))) n.classList.add('active');
+  });
+  document.getElementById('topbar-title').textContent = PAGE_TITLES[id] || id;
+  if (id === 'orders') renderOrders();
+  if (id === 'products') renderProductList();
+  if (id === 'settings') loadSettingsForm();
+}
+
+/* ===== KPI ===== */
+function renderKPI() {
+  const sales = products.reduce((s,p) => s + p.price, 0);
+  const cost  = products.reduce((s,p) => s + p.cost, 0);
+  const margin = sales - cost;
+  const rate = (margin / sales * 100).toFixed(1);
+  document.getElementById('kpi-grid').innerHTML = `
+    <div class="kpi-item k-sales">
+      <div class="kpi-label">총 매출 (8종 합계)</div>
+      <div class="kpi-value">${sales.toLocaleString()}원</div>
+      <div class="kpi-sub">8개 PB 상품 판매가 합계</div>
+    </div>
+    <div class="kpi-item k-cost">
+      <div class="kpi-label">총 매입</div>
+      <div class="kpi-value">${cost.toLocaleString()}원</div>
+      <div class="kpi-sub">공급가 합계</div>
+    </div>
+    <div class="kpi-item k-margin">
+      <div class="kpi-label">총 마진</div>
+      <div class="kpi-value">${margin >= 0 ? '+' : ''}${margin.toLocaleString()}원</div>
+      <div class="kpi-sub">판매가 − 매입가</div>
+    </div>
+    <div class="kpi-item k-rate">
+      <div class="kpi-label">평균 마진율</div>
+      <div class="kpi-value">${rate}%</div>
+      <div class="kpi-sub">8종 평균 기준</div>
+    </div>
+  `;
+}
+
+/* ===== CHART ===== */
+function renderChart() {
+  const chartArea = document.getElementById('chart-area');
+  const chartLabels = document.getElementById('chart-labels');
+  const orders = JSON.parse(localStorage.getItem('kfst_orders') || '[]');
+  const days = [];
+  for (let i = 13; i >= 0; i--) {
+    const d = new Date(); d.setDate(d.getDate() - i);
+    days.push({ label:`${d.getMonth()+1}/${d.getDate()}`, sales: Math.floor(Math.random()*120000)+20000 });
+  }
+  orders.forEach(o => {
+    const d = new Date(o.date);
+    const lbl = `${d.getMonth()+1}/${d.getDate()}`;
+    const total = parseInt((o.total || '').replace(/[^0-9]/g,''), 10) || 0;
+    const found = days.find(x => x.label === lbl);
+    if (found) found.sales += total;
+  });
+  const maxS = Math.max(...days.map(d => d.sales));
+  chartArea.innerHTML = '';
+  chartLabels.innerHTML = '';
+  days.forEach(d => {
+    const margin = Math.floor(d.sales * 0.22);
+    const sp = (d.sales / maxS * 100).toFixed(1);
+    const mp = (margin / maxS * 100).toFixed(1);
+    const grp = document.createElement('div');
+    grp.className = 'bar-grp';
+    grp.innerHTML = `
+      <div class="bar sales" style="height:${sp}%" data-tip="${d.sales.toLocaleString()}원"></div>
+      <div class="bar margin" style="height:${mp}%" data-tip="${margin.toLocaleString()}원"></div>
+    `;
+    chartArea.appendChild(grp);
+    const lbl = document.createElement('div');
+    lbl.className = 'chart-label-grp';
+    lbl.innerHTML = `<div class="bar-date">${d.label}</div>`;
+    chartLabels.appendChild(lbl);
+  });
+}
+
+/* ===== PROFIT TABLE ===== */
+function renderProfitTable() {
+  const tbody = document.getElementById('profit-tbody');
+  tbody.innerHTML = '';
+  let ss=0, sc=0, sm=0;
+  products.forEach(p => {
+    const margin = p.price - p.cost;
+    const rate = (margin / p.price * 100).toFixed(1);
+    ss += p.price; sc += p.cost; sm += margin;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${p.shortName || p.name}</td>
+      <td class="num-col">${p.price.toLocaleString()}</td>
+      <td class="num-col">${p.cost.toLocaleString()}</td>
+      <td class="num-col ${margin >= 0 ? 'pos' : 'neg'}">${margin >= 0 ? '+' : ''}${margin.toLocaleString()}</td>
+      <td class="num-col ${margin >= 0 ? 'pos' : 'neg'}">${rate}%</td>
+      <td><span class="tbl-badge ${p.badge==='BEST'?'tb-best':p.badge==='NEW'?'tb-new':'tb-none'}">${p.badge||'—'}</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+  const avgR = (sm/ss*100).toFixed(1);
+  document.getElementById('f-sales').textContent = ss.toLocaleString() + '원';
+  document.getElementById('f-cost').textContent = sc.toLocaleString() + '원';
+  document.getElementById('f-margin').textContent = (sm>=0?'+':'') + sm.toLocaleString() + '원';
+  document.getElementById('f-rate').textContent = avgR + '%';
+}
+
+/* ===== PRODUCT LIST ===== */
+function renderProductList() {
+  const tbody = document.getElementById('product-tbody');
+  tbody.innerHTML = '';
+  products.forEach(p => {
+    const margin = p.price - p.cost;
+    const rate = (margin / p.price * 100).toFixed(1);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>
+        <label class="toggle">
+          <input type="checkbox" ${p.displayed ? 'checked' : ''} onchange="toggleDisplay(${p.id},this.checked)">
+          <span class="toggle-slider"></span>
+        </label>
+      </td>
+      <td style="max-width:220px;font-weight:600;">${p.name}</td>
+      <td class="num-col">${p.price.toLocaleString()}</td>
+      <td class="num-col">${p.cost.toLocaleString()}</td>
+      <td class="num-col ${margin>=0?'pos':'neg'}">${rate}%</td>
+      <td><span class="tbl-badge ${p.badge==='BEST'?'tb-best':p.badge==='NEW'?'tb-new':'tb-none'}">${p.badge||'없음'}</span></td>
+      <td style="display:flex;gap:6px;align-items:center;">
+        <button class="btn btn-ghost btn-sm" onclick="openEditModal(${p.id})">수정</button>
+        <button class="btn btn-sm" style="background:var(--rose-pale);color:var(--rose);border:1px solid #F9C0CE;" onclick="deleteProduct(${p.id})">삭제</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function toggleDisplay(id, val) {
+  const p = products.find(x => x.id === id);
+  if (p) { p.displayed = val; saveProductList(true); }
+}
+
+function deleteProduct(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  if (!confirm(`"${p.name}"\n\n이 상품을 삭제할까요? 되돌릴 수 없습니다.`)) return;
+  products = products.filter(x => x.id !== id);
+  saveProductList(true);
+  renderProductList(); renderProfitTable(); renderKPI();
+  showToast(`"${p.name}" 삭제 완료!`);
+}
+
+function saveProductList(silent) {
+  /* 신규 상품의 thumbDataUrl, detailImgs, options 등 전체 필드 보존 */
+  const data = products.map(p => {
+    const base = { id:p.id, name:p.name, price:p.price, cost:p.cost, badge:p.badge, displayed:p.displayed };
+    if (p.thumbDataUrl)  base.thumbDataUrl  = p.thumbDataUrl;
+    if (p.detailImgs)    base.detailImgs    = p.detailImgs;
+    if (p.hasOption)     base.hasOption     = p.hasOption;
+    if (p.options)       base.options       = p.options;
+    if (p.category)      base.category      = p.category;
+    if (p.shortName)     base.shortName     = p.shortName;
+    return base;
+  });
+  localStorage.setItem('kfst_products', JSON.stringify(data));
+  if (!silent) { showToast('상품 정보 저장 완료!'); renderProfitTable(); renderKPI(); }
+}
+
+/* ===== EDIT MODAL ===== */
+function openEditModal(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('e-id').value = id;
+  document.getElementById('e-name').value = p.name;
+  document.getElementById('e-price').value = p.price;
+  document.getElementById('e-cost').value = p.cost;
+  document.getElementById('e-badge').value = p.badge;
+  document.getElementById('e-displayed').value = p.displayed.toString();
+  document.getElementById('editModal').classList.add('active');
+}
+
+function closeEditModal() { document.getElementById('editModal').classList.remove('active'); }
+
+function saveEdit() {
+  const id = parseInt(document.getElementById('e-id').value);
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  p.name = document.getElementById('e-name').value;
+  p.price = parseInt(document.getElementById('e-price').value);
+  p.cost = parseInt(document.getElementById('e-cost').value);
+  p.badge = document.getElementById('e-badge').value;
+  p.displayed = document.getElementById('e-displayed').value === 'true';
+  saveProductList(true);
+  renderProductList(); renderProfitTable(); renderKPI();
+  closeEditModal();
+  showToast('상품 수정 완료!');
+}
+
+/* ===== ORDERS ===== */
+function renderOrders() {
+  const orders = JSON.parse(localStorage.getItem('kfst_orders') || '[]');
+  const tbody = document.getElementById('order-tbody');
+  const empty = document.getElementById('order-empty');
+  tbody.innerHTML = '';
+  if (!orders.length) { empty.style.display='block'; return; }
+  empty.style.display = 'none';
+  [...orders].reverse().forEach(o => {
+    const d = new Date(o.date);
+    const ds = `${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="font-size:12px;color:var(--text-3);">${ds}</td>
+      <td>${o.buyer}<br><span style="font-size:11px;color:var(--text-3);">${o.phone}</span></td>
+      <td style="max-width:180px;font-size:12.5px;">${o.product}</td>
+      <td class="num-col" style="color:var(--rose);">${o.total}</td>
+      <td><span class="status-badge ${o.status==='입금대기'?'st-wait':o.status==='입금확인'?'st-done':'st-cancel'}">${o.status}</span></td>
+      <td>
+        <button class="btn btn-ghost btn-sm" style="margin-right:4px;" onclick="updateOrder(${o.id},'입금확인')">확인</button>
+        <button class="btn btn-sm" style="background:var(--rose-pale);color:var(--rose);border:1px solid #F9C0CE;" onclick="updateOrder(${o.id},'취소')">취소</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function updateOrder(id, status) {
+  const orders = JSON.parse(localStorage.getItem('kfst_orders') || '[]');
+  const o = orders.find(x => x.id === id);
+  if (o) { o.status = status; localStorage.setItem('kfst_orders', JSON.stringify(orders)); }
+  renderOrders();
+  showToast(`주문 상태: ${status}`);
+}
+
+function clearOrders() {
+  if (confirm('모든 주문을 삭제할까요?')) {
+    localStorage.removeItem('kfst_orders');
+    renderOrders();
+    showToast('주문 초기화 완료');
+  }
+}
+
+/* ===== SETTINGS ===== */
+function loadSettingsForm() {
+  document.getElementById('s-mall-name').value = MALL_CONFIG.mallName;
+  document.getElementById('s-mall-sub').value = MALL_CONFIG.mallSubName;
+  document.getElementById('s-hero-title').value = MALL_CONFIG.heroTitle;
+  document.getElementById('s-hero-desc').value = MALL_CONFIG.heroDesc;
+  document.getElementById('notice-text').value = MALL_CONFIG.noticeText;
+}
+
+function saveMallSettings() {
+  MALL_CONFIG.mallName = document.getElementById('s-mall-name').value || 'KF_St';
+  MALL_CONFIG.mallSubName = document.getElementById('s-mall-sub').value;
+  MALL_CONFIG.heroTitle = document.getElementById('s-hero-title').value;
+  MALL_CONFIG.heroDesc = document.getElementById('s-hero-desc').value;
+  MALL_CONFIG.noticeText = document.getElementById('notice-text').value;
+  localStorage.setItem('kfst_config', JSON.stringify(MALL_CONFIG));
+  document.getElementById('admin-brand').textContent = MALL_CONFIG.mallName;
+  showToast('설정 저장 완료! 폐쇄몰 새로고침 시 반영됩니다.');
+}
+
+function saveMarketingConfig() {
+  MALL_CONFIG.noticeText = document.getElementById('notice-text').value;
+  localStorage.setItem('kfst_config', JSON.stringify(MALL_CONFIG));
+  showToast('마케팅 설정 저장 완료!');
+}
+
+function saveBankConfig() {
+  MALL_CONFIG.bankName = document.getElementById('b-bank').value;
+  MALL_CONFIG.bankAccount = document.getElementById('b-account').value;
+  MALL_CONFIG.bankOwner = document.getElementById('b-owner').value;
+  MALL_CONFIG.bankPhone = document.getElementById('b-phone').value;
+  localStorage.setItem('kfst_config', JSON.stringify(MALL_CONFIG));
+  showToast('계좌 정보 저장 완료!');
+}
+
+function savePopupConfig() {
+  const cfg = { active: document.getElementById('popup-active').checked, title: document.getElementById('popup-title').value, content: document.getElementById('popup-content').value };
+  localStorage.setItem('kfst_popup', JSON.stringify(cfg));
+  showToast('팝업 설정 저장 완료!');
+}
+
+function previewPopup() {
+  document.getElementById('ppv-title').textContent = document.getElementById('popup-title').value || '공지사항';
+  document.getElementById('ppv-content').textContent = document.getElementById('popup-content').value;
+  document.getElementById('popupPrevModal').classList.add('active');
+}
+
+/* ===== SMART PRODUCT REGISTER ===== */
+function toggleOptUI(val) {
+  document.getElementById('r-opt-area').style.display = val === 'option' ? '' : 'none';
+}
+
+function addOptionRow(name='', price='') {
+  const row = document.createElement('div');
+  row.className = 'option-row';
+  row.innerHTML = `
+    <input type="text" placeholder="옵션명 (예: 딥브라운+딥브라운스트라이프)" value="${name}">
+    <input type="number" placeholder="추가금액 (0원이면 0)" value="${price}" style="max-width:140px;">
+    <button class="del-opt-btn" onclick="this.parentElement.remove()">삭제</button>
+  `;
+  document.getElementById('r-opt-rows').appendChild(row);
+}
+
+function switchDetailTab(tab, el) {
+  document.querySelectorAll('.reg-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.reg-tab-panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('rtp-' + tab).classList.add('active');
+}
+
+/* ── 썸네일 업로드 ── */
+let thumbDataUrl = '';
+
+function handleThumbInput(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    thumbDataUrl = ev.target.result;
+    const img = document.getElementById('thumb-preview-img');
+    img.src = thumbDataUrl;
+    document.getElementById('thumb-preview-wrap').style.display = 'block';
+    // 업로드 존 시각 축소
+    const zone = document.getElementById('thumb-upload-zone');
+    zone.style.flex = '0 0 64px';
+    zone.style.height = '64px';
+    zone.style.fontSize = '18px';
+  };
+  reader.readAsDataURL(file);
+}
+
+function handleThumbDrop(e) {
+  e.preventDefault();
+  document.getElementById('thumb-upload-zone').classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) handleThumbInput(file);
+}
+
+function clearThumb() {
+  thumbDataUrl = '';
+  document.getElementById('thumb-preview-img').src = '';
+  document.getElementById('thumb-preview-wrap').style.display = 'none';
+  document.getElementById('r-thumb-input').value = '';
+  const zone = document.getElementById('thumb-upload-zone');
+  zone.style.flex = '0 0 140px';
+  zone.style.height = '140px';
+}
+
+/* ── 상세 이미지 업로드 ── */
+let uploadedFiles = [];
+
+function handleFileInput(files) {
+  Array.from(files).forEach(f => addPreview(f));
+}
+
+function handleDetailDrop(e) {
+  e.preventDefault();
+  document.getElementById('upload-zone').classList.remove('drag');
+  handleFileInput(e.dataTransfer.files);
+}
+
+function addPreview(file) {
+  uploadedFiles.push(file);
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    const item = document.createElement('div');
+    item.className = 'preview-item';
+    const idx = uploadedFiles.length - 1;
+    item.innerHTML = `
+      <img src="${ev.target.result}" alt="">
+      <button class="rm-btn" onclick="removePreview(${idx}, this.parentElement)">✕</button>
+    `;
+    document.getElementById('preview-list').appendChild(item);
+  };
+  reader.readAsDataURL(file);
+}
+
+function removePreview(idx, el) {
+  uploadedFiles.splice(idx, 1);
+  el.remove();
+}
+
+function renderHtmlPreview() {
+  const code = document.getElementById('r-html-code').value;
+  const preview = document.getElementById('r-html-preview');
+  try {
+    preview.innerHTML = code || '<span style="font-size:12px;color:var(--text-3);">미리보기 없음</span>';
+  } catch(e) { preview.textContent = '렌더링 오류'; }
+}
+
+function initRealTimeCalc() {
+  ['r-price','r-cost'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => {
+      const price = parseInt(document.getElementById('r-price').value) || 0;
+      const cost  = parseInt(document.getElementById('r-cost').value) || 0;
+      const margin = price - cost;
+      const rate   = price > 0 ? (margin / price * 100).toFixed(1) : 0;
+      document.getElementById('r-calc-margin').textContent = margin ? `${margin >= 0 ? '+' : ''}${margin.toLocaleString()}원` : '—';
+      document.getElementById('r-calc-rate').textContent = price ? `${rate}%` : '—';
+    });
+  });
+}
+
+function registerProduct() {
+  const name = document.getElementById('r-name').value.trim();
+  const price = parseInt(document.getElementById('r-price').value) || 0;
+  const cost  = parseInt(document.getElementById('r-cost').value) || 0;
+  const badge = document.getElementById('r-badge').value;
+  const cat   = document.getElementById('r-cat').value;
+  if (!name || !price) { showToast('상품명과 판매가를 입력하세요.', 'err'); return; }
+
+  const isOption = document.querySelector('input[name="r-opt-type"]:checked')?.value === 'option';
+  const optRows = document.getElementById('r-opt-rows').querySelectorAll('.option-row');
+  const options = isOption ? Array.from(optRows).map(r => r.querySelector('input[type="text"]').value).filter(Boolean) : [];
+
+  /* 상세 이미지: 업로드된 파일이 있으면 base64, 없으면 HTML 소스 파싱 */
+  const detailDataUrls = [];
+  /* (비동기 처리 없이 이미 preview에 로드된 dataURL 재사용) */
+  document.querySelectorAll('#preview-list .preview-item img').forEach(img => {
+    if (img.src && img.src.startsWith('data:')) detailDataUrls.push(img.src);
+  });
+  /* HTML 탭 소스도 추출 */
+  const htmlCode = document.getElementById('r-html-code').value.trim();
+  if (htmlCode && !detailDataUrls.length) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = htmlCode;
+    tmp.querySelectorAll('img').forEach(img => { if (img.src) detailDataUrls.push(img.src); });
+  }
+
+  const newProd = {
+    id: Date.now(),
+    name, shortName: name.replace('키친플래그 ', ''),
+    category: cat, price, cost, badge,
+    hasOption: isOption && options.length > 0,
+    options,
+    folder: '', thumbFiles: [],
+    thumbDataUrl: thumbDataUrl || '',   /* ← 썸네일 Base64 */
+    detailImgs: detailDataUrls,
+    displayed: true,
+  };
+
+  products.push(newProd);
+  saveProductList(true);
+  showToast(`"${name}" 등록 완료! 폐쇄몰에 즉시 반영됩니다.`);
+  resetRegForm();
+  showPage('products');
+}
+
+function resetRegForm() {
+  ['r-name','r-price','r-cost'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('r-badge').value = '';
+  document.getElementById('r-cat').value = '주방용품';
+  document.getElementById('r-opt-rows').innerHTML = '';
+  document.getElementById('r-opt-area').style.display = 'none';
+  document.querySelector('input[name="r-opt-type"][value="single"]').checked = true;
+  document.getElementById('preview-list').innerHTML = '';
+  document.getElementById('r-html-code').value = '';
+  document.getElementById('r-html-preview').innerHTML = '<span style="font-size:12px;color:var(--text-3);">미리보기 없음</span>';
+  document.getElementById('r-calc-margin').textContent = '—';
+  document.getElementById('r-calc-rate').textContent = '—';
+  uploadedFiles = [];
+  /* 썸네일 초기화 */
+  clearThumb();
+  document.getElementById('r-thumb-input').value = '';
+}
+
+/* ===== RESET ===== */
+function resetAll() {
+  if (confirm('모든 설정을 초기화할까요?')) {
+    ['kfst_config','kfst_products','kfst_orders','kfst_popup'].forEach(k => localStorage.removeItem(k));
+    location.reload();
+  }
+}
+
+/* ===== TOAST ===== */
+let toastTimer;
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = (type === 'err' ? '❌ ' : '✅ ') + msg;
+  t.className = 'toast show' + (type === 'err' ? ' err' : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+/* Close modals on backdrop */
+document.querySelectorAll('.m-overlay').forEach(m => {
+  m.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('active'); });
+});
+</script>
+</body>
+</html>
