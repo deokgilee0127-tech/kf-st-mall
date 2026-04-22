@@ -651,7 +651,12 @@ select.form-control { cursor: pointer; }
 
       <div class="card">
         <div class="card-hd">
-          <div class="label">📈 일별 매출 현황 (최근 14일)</div>
+          <div class="label">📈 일별 매출 현황</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-sm" style="background:var(--primary-pale);color:var(--primary);border:1px solid var(--primary);border-radius:6px;padding:6px 16px;cursor:pointer;font-weight:500;transition:all var(--tr);" onclick="switchChartPeriod('day')">일간 (7일)</button>
+            <button class="btn btn-sm" style="background:transparent;color:var(--text-2);border:1px solid var(--border);border-radius:6px;padding:6px 16px;cursor:pointer;font-weight:500;transition:all var(--tr);" onclick="switchChartPeriod('week')">주간 (12주)</button>
+            <button class="btn btn-sm" style="background:transparent;color:var(--text-2);border:1px solid var(--border);border-radius:6px;padding:6px 16px;cursor:pointer;font-weight:500;transition:all var(--tr);" onclick="switchChartPeriod('month')">월간 (12개월)</button>
+          </div>
         </div>
         <div class="chart-area" id="chart-area"></div>
         <div class="chart-labels" id="chart-labels"></div>
@@ -690,13 +695,23 @@ select.form-control { cursor: pointer; }
       <div class="card">
         <div class="card-hd">
           <div class="label">📦 주문 목록</div>
-          <button class="btn btn-ghost btn-sm" onclick="clearOrders()">초기화</button>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <select class="form-control" id="order-status-filter" onchange="renderOrders()" style="width:150px;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;">
+              <option value="">전체 상태</option>
+              <option value="입금대기">입금 대기</option>
+              <option value="입금완료">입금 완료</option>
+              <option value="배송중">배송 중</option>
+              <option value="배송완료">배송 완료</option>
+            </select>
+            <button class="btn btn-primary btn-sm" onclick="downloadOrdersCSV()">📥 주문내역 다운로드</button>
+            <button class="btn btn-ghost btn-sm" onclick="clearOrders()">초기화</button>
+          </div>
         </div>
         <div style="overflow-x:auto;">
           <table class="data-table">
             <thead><tr>
-              <th>일시</th><th>주문자</th><th>상품</th>
-              <th>금액</th><th>상태</th><th>처리</th>
+              <th>일시</th><th>주문자</th><th>연락처</th><th>상품</th>
+              <th>수량</th><th>금액</th><th>상태</th><th>처리</th>
             </tr></thead>
             <tbody id="order-tbody"></tbody>
           </table>
@@ -1193,22 +1208,57 @@ function renderChart() {
   const chartArea = document.getElementById('chart-area');
   const chartLabels = document.getElementById('chart-labels');
   const orders = JSON.parse(localStorage.getItem('kfst_orders') || '[]');
-  const days = [];
-  for (let i = 13; i >= 0; i--) {
-    const d = new Date(); d.setDate(d.getDate() - i);
-    days.push({ label:`${d.getMonth()+1}/${d.getDate()}`, sales: Math.floor(Math.random()*120000)+20000 });
+  let data = [];
+
+  if (currentChartPeriod === 'day') {
+    // 일간: 최근 7일
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(); d.setDate(d.getDate() - i);
+      const label = ['일','월','화','수','목','금','토'][d.getDay()];
+      data.push({ label:`${d.getMonth()+1}/${d.getDate()} (${label})`, sales: 0 });
+    }
+  } else if (currentChartPeriod === 'week') {
+    // 주간: 최근 12주
+    for (let i = 11; i >= 0; i--) {
+      const d = new Date(); d.setDate(d.getDate() - (i * 7));
+      const w = Math.ceil((d.getDate()) / 7);
+      data.push({ label:`${d.getMonth()+1}월 ${w}주차`, sales: 0 });
+    }
+  } else if (currentChartPeriod === 'month') {
+    // 월간: 최근 12개월
+    for (let i = 11; i >= 0; i--) {
+      const d = new Date(); d.setMonth(d.getMonth() - i);
+      data.push({ label:`${d.getFullYear().toString().slice(-2)}년 ${d.getMonth()+1}월`, sales: 0 });
+    }
   }
+
+  // 주문 데이터 합산
   orders.forEach(o => {
-    const d = new Date(o.date);
-    const lbl = `${d.getMonth()+1}/${d.getDate()}`;
+    const orderDate = new Date(o.date);
     const total = parseInt((o.total || '').replace(/[^0-9]/g,''), 10) || 0;
-    const found = days.find(x => x.label === lbl);
-    if (found) found.sales += total;
+    
+    let matched = false;
+    if (currentChartPeriod === 'day') {
+      const label = `${orderDate.getMonth()+1}/${orderDate.getDate()}`;
+      const found = data.find(x => x.label.startsWith(label));
+      if (found) { found.sales += total; matched = true; }
+    } else if (currentChartPeriod === 'week') {
+      const w = Math.ceil((orderDate.getDate()) / 7);
+      const label = `${orderDate.getMonth()+1}월 ${w}주차`;
+      const found = data.find(x => x.label === label);
+      if (found) { found.sales += total; matched = true; }
+    } else if (currentChartPeriod === 'month') {
+      const label = `${orderDate.getFullYear().toString().slice(-2)}년 ${orderDate.getMonth()+1}월`;
+      const found = data.find(x => x.label === label);
+      if (found) { found.sales += total; matched = true; }
+    }
   });
-  const maxS = Math.max(...days.map(d => d.sales));
+
+  const maxS = Math.max(...data.map(d => d.sales), 100000);
   chartArea.innerHTML = '';
   chartLabels.innerHTML = '';
-  days.forEach(d => {
+  
+  data.forEach(d => {
     const margin = Math.floor(d.sales * 0.22);
     const sp = (d.sales / maxS * 100).toFixed(1);
     const mp = (margin / maxS * 100).toFixed(1);
@@ -1223,6 +1273,8 @@ function renderChart() {
     lbl.className = 'chart-label-grp';
     lbl.innerHTML = `<div class="bar-date">${d.label}</div>`;
     chartLabels.appendChild(lbl);
+  });
+}
   });
 }
 
@@ -1344,26 +1396,86 @@ function saveEdit() {
 }
 
 /* ===== ORDERS ===== */
+let currentChartPeriod = 'day';
+
+function switchChartPeriod(period) {
+  currentChartPeriod = period;
+  // 버튼 스타일 업데이트
+  document.querySelectorAll('.card-hd .btn').forEach(btn => {
+    btn.style.background = 'transparent';
+    btn.style.color = 'var(--text-2)';
+    btn.style.border = '1px solid var(--border)';
+  });
+  event.target.style.background = 'var(--primary-pale)';
+  event.target.style.color = 'var(--primary)';
+  event.target.style.border = '1px solid var(--primary)';
+  renderChart();
+}
+
+function downloadOrdersCSV() {
+  const orders = JSON.parse(localStorage.getItem('kfst_orders') || '[]');
+  if (!orders.length) {
+    alert('다운로드할 주문이 없습니다.');
+    return;
+  }
+
+  let csv = '날짜,주문자,연락처,주소,상품명,수량,금액,상태\n';
+  orders.forEach(o => {
+    const date = new Date(o.date).toLocaleDateString('ko-KR') + ' ' + new Date(o.date).toLocaleTimeString('ko-KR');
+    const row = [
+      date,
+      o.buyer || '',
+      o.phone || '',
+      o.address || '',
+      o.product || '',
+      o.qty || 1,
+      o.total || '0원',
+      o.status || '입금대기'
+    ];
+    csv += row.map(cell => `"${cell}"`).join(',') + '\n';
+  });
+
+  const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `KF_St_주문내역_${new Date().toISOString().split('T')[0]}.csv`;
+  link.click();
+  showToast(`${orders.length}개 주문 다운로드 완료!`);
+}
+
 function renderOrders() {
   const orders = JSON.parse(localStorage.getItem('kfst_orders') || '[]');
+  const statusFilter = document.getElementById('order-status-filter')?.value || '';
+  const filtered = statusFilter ? orders.filter(o => o.status === statusFilter) : orders;
+  
   const tbody = document.getElementById('order-tbody');
   const empty = document.getElementById('order-empty');
   tbody.innerHTML = '';
-  if (!orders.length) { empty.style.display='block'; return; }
+  if (!filtered.length) { empty.style.display='block'; return; }
   empty.style.display = 'none';
-  [...orders].reverse().forEach(o => {
+  
+  [...filtered].reverse().forEach(o => {
     const d = new Date(o.date);
     const ds = `${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td style="font-size:12px;color:var(--text-3);">${ds}</td>
-      <td>${o.buyer}<br><span style="font-size:11px;color:var(--text-3);">${o.phone}</span></td>
-      <td style="max-width:180px;font-size:12.5px;">${o.product}</td>
-      <td class="num-col" style="color:var(--rose);">${o.total}</td>
-      <td><span class="status-badge ${o.status==='입금대기'?'st-wait':o.status==='입금확인'?'st-done':'st-cancel'}">${o.status}</span></td>
+      <td>${o.buyer || '미입력'}</td>
+      <td style="font-size:12px;">${o.phone || '미입력'}</td>
+      <td style="max-width:150px;font-size:12.5px;">${o.product}</td>
+      <td class="num-col">${o.qty || 1}개</td>
+      <td class="num-col" style="color:var(--rose);font-weight:600;">${o.total}</td>
       <td>
-        <button class="btn btn-ghost btn-sm" style="margin-right:4px;" onclick="updateOrder(${o.id},'입금확인')">확인</button>
-        <button class="btn btn-sm" style="background:var(--rose-pale);color:var(--rose);border:1px solid #F9C0CE;" onclick="updateOrder(${o.id},'취소')">취소</button>
+        <span class="status-badge ${o.status==='입금대기'?'st-wait':o.status==='입금완료'?'st-done':'st-cancel'}">${o.status}</span>
+      </td>
+      <td>
+        <select onchange="updateOrder(${o.id}, this.value)" style="padding:4px 8px;border:1px solid var(--border);border-radius:4px;font-size:11px;">
+          <option value="">상태변경</option>
+          <option value="입금대기">입금대기</option>
+          <option value="입금완료">입금완료</option>
+          <option value="배송중">배송중</option>
+          <option value="배송완료">배송완료</option>
+        </select>
       </td>
     `;
     tbody.appendChild(tr);
@@ -1371,6 +1483,7 @@ function renderOrders() {
 }
 
 function updateOrder(id, status) {
+  if (!status) return;
   const orders = JSON.parse(localStorage.getItem('kfst_orders') || '[]');
   const o = orders.find(x => x.id === id);
   if (o) { o.status = status; localStorage.setItem('kfst_orders', JSON.stringify(orders)); }
