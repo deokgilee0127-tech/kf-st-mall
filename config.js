@@ -5,21 +5,27 @@
 
 /* ===== THUMBNAIL BASE PATH =====
    Netlify 배포 환경: 01_Product_Master 폴더가 루트에 함께 업로드됨
+   한글/특수문자 폴더명은 encodeURIComponent로 처리
    ============================================================ */
-const LOCAL_BASE = '01_Product_Master/DMC_터블,키친플래그 이미지자료/';
+const LOCAL_BASE_PARTS = ['01_Product_Master', 'DMC_터블,키친플래그 이미지자료'];
+
+function encodePath(...parts) {
+  return parts.map(p => encodeURIComponent(p)).join('/');
+}
 
 function localThumb(folder, file) {
   if (typeof folder === 'object') {
     const p = folder;
     /* ① 관리자 업로드 Base64 최우선 */
     if (p.thumbDataUrl) return p.thumbDataUrl;
-    /* ② Netlify 상대경로 썸네일 */
-    const base = '01_Product_Master/DMC_터블,키친플래그 이미지자료';
-    return p.thumbFiles && p.thumbFiles.length
-      ? `${base}/${p.folder}/썸네일/${p.thumbFiles[0]}`
-      : `https://placehold.co/400x400/e0f0ff/003366?text=${encodeURIComponent(p.shortName || p.name)}`;
+    /* ② Netlify 상대경로 썸네일 (한글 인코딩 적용) */
+    if (p.thumbFiles && p.thumbFiles.length) {
+      return encodePath('01_Product_Master', 'DMC_터블,키친플래그 이미지자료', p.folder, '썸네일', p.thumbFiles[0]);
+    }
+    return `https://placehold.co/400x400/e0f0ff/003366?text=${encodeURIComponent(p.shortName || p.name)}`;
   }
-  return LOCAL_BASE + folder + '/썸네일/' + file;
+  /* 폴더+파일 문자열 형태 */
+  return encodePath('01_Product_Master', 'DMC_터블,키친플래그 이미지자료', folder, '썸네일', file);
 }
 
 /* ===== MALL CONFIG =====
