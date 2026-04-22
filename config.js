@@ -3,22 +3,22 @@
    index.html 에서 <script src="config.js"> 로 불러옵니다.
    ============================================================ */
 
-/* ===== LOCAL THUMBNAIL BASE PATH ===== */
-const LOCAL_BASE = '../01_Product_Master/DMC_터블,키친플래그 이미지자료/';
+/* ===== THUMBNAIL BASE PATH =====
+   Netlify 배포 환경: 01_Product_Master 폴더가 루트에 함께 업로드됨
+   ============================================================ */
+const LOCAL_BASE = '01_Product_Master/DMC_터블,키친플래그 이미지자료/';
 
 function localThumb(folder, file) {
   if (typeof folder === 'object') {
-    /* 객체를 직접 받는 경우 (tower-logic / attacker 등) */
     const p = folder;
     /* ① 관리자 업로드 Base64 최우선 */
     if (p.thumbDataUrl) return p.thumbDataUrl;
-    /* ② 로컬 폴더 썸네일 */
-    const base = '../01_Product_Master/DMC_터블,키친플래그 이미지자료';
+    /* ② Netlify 상대경로 썸네일 */
+    const base = '01_Product_Master/DMC_터블,키친플래그 이미지자료';
     return p.thumbFiles && p.thumbFiles.length
       ? `${base}/${p.folder}/썸네일/${p.thumbFiles[0]}`
       : `https://placehold.co/400x400/e0f0ff/003366?text=${encodeURIComponent(p.shortName || p.name)}`;
   }
-  /* 폴더+파일 문자열 형태 */
   return LOCAL_BASE + folder + '/썸네일/' + file;
 }
 
